@@ -1,0 +1,406 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<meta name="theme-color" content="#101828" />
+<link rel="manifest" href="manifest.webmanifest" />
+<title>Infinia Academy - October 2026 Course Calendar</title>
+<style>
+:root{--bg:#f6f7fb;--card:#fff;--text:#172033;--muted:#667085;--line:#e5e7eb;--accent:#3448c5;--tuang:#ffe4e6;--lek:#dbeafe;--boom:#fef3c7;--baipak:#dcfce7;--base:#ede9fe}
+*{box-sizing:border-box} body{margin:0;font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:var(--bg);color:var(--text)}
+header{background:#101828;color:white;padding:18px 16px 14px;position:sticky;top:0;z-index:10;box-shadow:0 2px 10px #0002}
+header h1{font-size:20px;margin:0 0 4px} header p{margin:0;color:#cfd4dc;font-size:13px}
+.wrap{max-width:1400px;margin:auto;padding:16px}.toolbar{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-bottom:14px}.tabs{display:flex;gap:6px;flex-wrap:wrap}.tab,select,label.toggle{border:1px solid var(--line);background:#fff;border-radius:10px;padding:9px 12px;font-size:14px}.tab.active{background:var(--accent);color:#fff;border-color:var(--accent)} select{min-width:180px}.toggle{display:flex;align-items:center;gap:7px}.summary{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;margin:12px 0}.stat{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:12px}.stat b{display:block;font-size:20px}.stat span{font-size:12px;color:var(--muted)}
+.legend{display:flex;gap:8px;flex-wrap:wrap;margin:8px 0 14px}.pill{padding:5px 9px;border-radius:999px;font-size:12px;border:1px solid #0001}.Tuang{background:var(--tuang)}.Lek{background:var(--lek)}.Boom{background:var(--boom)}.Baipak{background:var(--baipak)}.Base{background:var(--base)}
+.calendar{display:grid;grid-template-columns:repeat(7,minmax(145px,1fr));gap:8px}.dow{font-size:12px;text-transform:uppercase;color:var(--muted);font-weight:700;padding:0 6px}.day{background:var(--card);border:1px solid var(--line);border-radius:12px;min-height:175px;padding:8px;overflow:hidden}.day.dim{opacity:.52}.dayhead{display:flex;justify-content:space-between;align-items:center;margin-bottom:6px}.date{font-weight:750}.count{font-size:11px;color:var(--muted)}.period-row{display:grid;gap:4px;margin:4px 0;align-items:stretch}.event{border-radius:8px;padding:5px 6px;margin:0;font-size:11px;line-height:1.25;border:1px solid #0000000d;min-width:0}.event strong{font-size:12px}.event small{display:block;color:#475467;margin-top:2px}.empty{font-size:12px;color:#98a2b3;padding-top:8px}
+.panel{background:#fff;border:1px solid var(--line);border-radius:12px;padding:14px;margin:14px 0}.panel h3{margin:0 0 8px;font-size:15px}.checks{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:8px}.check{border:1px solid var(--line);border-radius:10px;padding:9px;font-size:12px}.ok{color:#067647}.warn{color:#b54708}.small{font-size:12px;color:var(--muted)}
+.export-controls{display:flex;gap:6px;align-items:center;margin-left:auto}.export-controls select{min-width:120px}.export-btn{border:1px solid #293a9b;background:#3448c5;color:#fff;border-radius:10px;padding:9px 14px;font-size:14px;font-weight:700;cursor:pointer}.export-btn:hover{filter:brightness(.96)}.export-btn:disabled{opacity:.55;cursor:wait}.print-context{display:none}.export-note{font-size:11px;color:var(--muted)}
+@media print{@page{size:A3 landscape;margin:8mm}body{background:#fff}.toolbar,.export-controls{display:none!important}header{position:static;box-shadow:none;-webkit-print-color-adjust:exact;print-color-adjust:exact}.wrap{max-width:none;padding:8px}.print-context{display:block;font-weight:700;margin:0 0 10px;color:#475467}.calendar{grid-template-columns:repeat(7,minmax(0,1fr));gap:5px}.dow{display:block}.day{min-height:0;break-inside:avoid}.panel,.stat,.event{break-inside:avoid;-webkit-print-color-adjust:exact;print-color-adjust:exact}.summary{grid-template-columns:repeat(5,1fr)}.event{font-size:9px}.event strong{font-size:10px}.event small{font-size:8px}}
+@media(max-width:900px){.calendar{grid-template-columns:repeat(2,minmax(0,1fr))}.dow{display:none}.day{min-height:130px}}@media(max-width:560px){.calendar{grid-template-columns:1fr}.wrap{padding:10px}.day{min-height:auto}.toolbar{align-items:stretch}.tabs{width:100%}.tab{flex:1}.toolbar select{width:100%}}
+
+.pathway-picker{position:relative;min-width:260px}
+.pathway-picker[hidden]{display:none!important}
+.pathway-picker-btn{width:100%;min-width:260px;border:1px solid var(--line);background:#fff;border-radius:10px;padding:9px 36px 9px 12px;font-size:14px;text-align:left;color:var(--text);cursor:pointer;position:relative}
+.pathway-picker-btn:after{content:"▾";position:absolute;right:12px;top:8px;color:var(--muted);font-size:16px}
+.pathway-menu{position:absolute;z-index:40;top:calc(100% + 6px);left:0;width:min(420px,92vw);max-height:390px;overflow:auto;background:#fff;border:1px solid var(--line);border-radius:12px;box-shadow:0 14px 34px #10182824;padding:8px}
+.pathway-menu[hidden]{display:none!important}
+.pathway-menu-head{display:flex;justify-content:space-between;align-items:center;padding:5px 6px 8px;border-bottom:1px solid var(--line);margin-bottom:5px}
+.pathway-menu-head span{font-size:12px;color:var(--muted)}
+.pathway-action{border:0;background:transparent;color:var(--accent);font-size:12px;font-weight:700;cursor:pointer;padding:4px 6px}
+.pathway-option{display:flex;align-items:center;gap:9px;padding:7px 8px;border-radius:8px;cursor:pointer;font-size:13px}
+.pathway-option:hover{background:#f5f7ff}
+.pathway-option input{margin:0;width:16px;height:16px}
+.pathway-dot{width:10px;height:10px;border-radius:50%;flex:0 0 auto}
+.pathway-legend{display:flex;gap:8px;flex-wrap:wrap;margin:-4px 0 14px}
+.pathway-legend[hidden]{display:none!important}
+.pathway-key{display:inline-flex;align-items:center;gap:7px;padding:5px 9px;border-radius:999px;background:#fff;border:1px solid var(--line);font-size:12px}
+.pathway-key i{width:14px;height:14px;border:3px solid currentColor;border-radius:4px;background:#fff;display:inline-block}
+.event.path-outlined{box-shadow:inset 0 0 0 3px var(--path-outline)}
+@media(max-width:560px){.pathway-picker,.pathway-picker-btn{width:100%;min-width:0}.pathway-menu{width:100%}}
+
+</style>
+</head>
+<body>
+<header><h1>October 2026 Course Calendar</h1><p>Infinia Academy</p></header>
+<div class="wrap">
+  <div class="toolbar">
+    <div class="tabs">
+      <button class="tab active" data-view="overview">Overview</button>
+      <button class="tab" data-view="teacher">Teacher</button>
+      <button class="tab" data-view="student">Student</button>
+    </div>
+    <select id="teacherSelect" hidden></select>
+    <div id="pathwayPicker" class="pathway-picker" hidden>
+      <button id="pathwayPickerBtn" class="pathway-picker-btn" type="button" aria-haspopup="listbox" aria-expanded="false">Select pathway</button>
+      <div id="pathwayMenu" class="pathway-menu" role="listbox" aria-multiselectable="true" hidden>
+        <div class="pathway-menu-head"><span>Select one or more pathways</span><button id="pathwayClear" class="pathway-action" type="button">Reset to P4</button></div>
+        <div id="pathwayOptions"></div>
+      </div>
+    </div>
+    <label class="toggle" id="efcToggleWrap" hidden><input type="checkbox" id="efcToggle"> Add EFC</label>
+    <div class="export-controls">
+      <select id="exportFormat" aria-label="Export format"><option value="svg">Image (SVG - reliable)</option><option value="pdf">PDF</option></select>
+      <button class="export-btn" id="exportBtn" type="button">Export</button>
+    </div>
+  </div>
+  <div class="print-context" id="printContext"></div>
+  <div class="legend" id="legend"></div>
+  <div class="pathway-legend" id="pathwayLegend" hidden></div>
+  <div class="summary" id="summary"></div>
+  <div class="calendar" id="calendar"></div>
+</div>
+<script>
+const periods={1:'09:00-10:30',2:'10:40-12:10',3:'13:00-14:30',4:'14:40-16:10',5:'16:20-17:50'};
+const teacherNames={Tuang:'Kru Tuang',Lek:'Kru Lek',Boom:'Kru Boom',Baipak:'Kru Baipak',Base:'Kru Base'};
+const groups={
+  'P4':['MP4','SP4','EP4'],
+  'P5 - EPF':['MP5','SP5','EPF'], 'P5 - EPA':['MP5','SP5','EPA'],
+  'P6 - EPF':['MP6','SP6','EPF'], 'P6 - EPA':['MP6','SP6','EPA'],
+  'M2 - EMF':['MM2','SM2','EMF'], 'M2 - EMA':['MM2','SM2','EMA'],
+  'M4e - EMF':['MM4e','PM4e','CM4e','BM4e','EMF'], 'M4e - EMA':['MM4e','PM4e','CM4e','BM4e','EMA'],
+  'M4 - EMF':['MM4','PM4','CM4','BM4','EMF'], 'M4 - EMA':['MM4','PM4','CM4','BM4','EMA'],
+  'M5':['MM5','PM5','CM5','BM5']
+};
+
+const pathwayColors={
+  'P4':'#e11d48',
+  'P5 - EPF':'#2563eb',
+  'P5 - EPA':'#16a34a',
+  'P6 - EPF':'#9333ea',
+  'P6 - EPA':'#f97316',
+  'M2 - EMF':'#0891b2',
+  'M2 - EMA':'#ca8a04',
+  'M4e - EMF':'#db2777',
+  'M4e - EMA':'#4f46e5',
+  'M4 - EMF':'#059669',
+  'M4 - EMA':'#dc2626',
+  'M5':'#7c3aed'
+};
+const sharedPathColor='#6b7280';
+let selectedPathways=['P4'];
+
+function getSelectedPathways(){ return [...selectedPathways]; }
+function selectedPathwayText(){
+ const a=getSelectedPathways();
+ if(!a.length) return 'No pathways';
+ if(a.length<=2) return a.join(' + ');
+ return `${a.length} pathways`;
+}
+function coursePathMembership(course){
+ const selected=getSelectedPathways();
+ if(course==='EFC' && selected.length>1) return selected;
+ return selected.filter(g=>(groups[g]||[]).includes(course));
+}
+function coursePathOutline(course){
+ const selected=getSelectedPathways();
+ if(view!=='student' || selected.length<=1) return null;
+ const m=coursePathMembership(course);
+ if(m.length>=2) return sharedPathColor;
+ if(m.length===1) return pathwayColors[m[0]];
+ return null;
+}
+function renderPathwayLegend(){
+ const el=document.getElementById('pathwayLegend');
+ const selected=getSelectedPathways();
+ if(view!=='student' || selected.length<=1){ el.hidden=true; el.innerHTML=''; return; }
+ el.hidden=false;
+ el.innerHTML=selected.map(g=>`<span class="pathway-key" style="color:${pathwayColors[g]}"><i></i>${g}</span>`).join('')+
+   `<span class="pathway-key" style="color:${sharedPathColor}"><i></i>Shared course</span>`;
+}
+function updatePathwayPicker(){
+ const btn=document.getElementById('pathwayPickerBtn');
+ const selected=getSelectedPathways();
+ btn.textContent=selected.length===1?selected[0]:`${selected.length} pathways selected`;
+ document.querySelectorAll('#pathwayOptions input[type=checkbox]').forEach(cb=>cb.checked=selected.includes(cb.value));
+}
+function togglePathwayMenu(force){
+ const menu=document.getElementById('pathwayMenu'),btn=document.getElementById('pathwayPickerBtn');
+ const open=force!==undefined?force:menu.hidden;
+ menu.hidden=!open;btn.setAttribute('aria-expanded',String(open));
+}
+
+const target={MP4:14,MP5:14,MP6:18,MM2:12,MM4e:18,MM4:14,MM5:10,SP4:14,SP5:14,SP6:18,SM2:12,PM4e:6,CM4e:6,PM4:12,PM5:12,EP4:14,EPF:18,EPA:18,EMF:18,EMA:18,EFC:14,BM4e:6,BM4:12,BM5:12,CM4:6,CM5:8};
+const embeddedSchedule=[{"date":"2026-10-01","period":1,"course":"EMA","teacher":"Boom"},{"date":"2026-10-01","period":1,"course":"MM5","teacher":"Tuang"},{"date":"2026-10-01","period":2,"course":"CM4e","teacher":"Lek"},{"date":"2026-10-01","period":2,"course":"MM5","teacher":"Tuang"},{"date":"2026-10-01","period":3,"course":"EMF","teacher":"Boom"},{"date":"2026-10-01","period":3,"course":"SP6","teacher":"Lek"},{"date":"2026-10-01","period":4,"course":"EFC","teacher":"Boom"},{"date":"2026-10-01","period":4,"course":"SP6","teacher":"Lek"},{"date":"2026-10-01","period":4,"course":"MM4","teacher":"Tuang"},{"date":"2026-10-01","period":5,"course":"EFC","teacher":"Boom"},{"date":"2026-10-01","period":5,"course":"SM2","teacher":"Lek"},{"date":"2026-10-01","period":5,"course":"MP6","teacher":"Tuang"},{"date":"2026-10-02","period":1,"course":"EMA","teacher":"Boom"},{"date":"2026-10-02","period":1,"course":"SP6","teacher":"Lek"},{"date":"2026-10-02","period":1,"course":"MP5","teacher":"Tuang"},{"date":"2026-10-02","period":2,"course":"EMA","teacher":"Boom"},{"date":"2026-10-02","period":2,"course":"MP5","teacher":"Tuang"},{"date":"2026-10-02","period":3,"course":"EPF","teacher":"Boom"},{"date":"2026-10-02","period":3,"course":"SM2","teacher":"Lek"},{"date":"2026-10-02","period":3,"course":"MM5","teacher":"Tuang"},{"date":"2026-10-02","period":4,"course":"EPA","teacher":"Boom"},{"date":"2026-10-02","period":4,"course":"PM4","teacher":"Lek"},{"date":"2026-10-02","period":4,"course":"MM2","teacher":"Tuang"},{"date":"2026-10-02","period":5,"course":"SP5","teacher":"Lek"},{"date":"2026-10-03","period":1,"course":"EP4","teacher":"Boom"},{"date":"2026-10-03","period":1,"course":"MM2","teacher":"Tuang"},{"date":"2026-10-03","period":2,"course":"BM4","teacher":"Baipak"},{"date":"2026-10-03","period":2,"course":"EP4","teacher":"Boom"},{"date":"2026-10-03","period":2,"course":"MM2","teacher":"Tuang"},{"date":"2026-10-03","period":3,"course":"BM5","teacher":"Baipak"},{"date":"2026-10-03","period":3,"course":"EMA","teacher":"Boom"},{"date":"2026-10-03","period":3,"course":"MP4","teacher":"Tuang"},{"date":"2026-10-03","period":4,"course":"BM5","teacher":"Baipak"},{"date":"2026-10-03","period":4,"course":"EMA","teacher":"Boom"},{"date":"2026-10-03","period":5,"course":"MM4","teacher":"Tuang"},{"date":"2026-10-04","period":1,"course":"EMF","teacher":"Boom"},{"date":"2026-10-04","period":1,"course":"MP6","teacher":"Tuang"},{"date":"2026-10-04","period":2,"course":"EMF","teacher":"Boom"},{"date":"2026-10-04","period":3,"course":"EMA","teacher":"Boom"},{"date":"2026-10-04","period":3,"course":"MM5","teacher":"Tuang"},{"date":"2026-10-04","period":4,"course":"EMA","teacher":"Boom"},{"date":"2026-10-04","period":4,"course":"MM5","teacher":"Tuang"},{"date":"2026-10-04","period":5,"course":"MM2","teacher":"Tuang"},{"date":"2026-10-05","period":1,"course":"EP4","teacher":"Boom"},{"date":"2026-10-05","period":1,"course":"SP5","teacher":"Lek"},{"date":"2026-10-05","period":2,"course":"SP5","teacher":"Lek"},{"date":"2026-10-05","period":3,"course":"EPA","teacher":"Boom"},{"date":"2026-10-05","period":3,"course":"SP4","teacher":"Lek"},{"date":"2026-10-05","period":4,"course":"EPF","teacher":"Boom"},{"date":"2026-10-05","period":4,"course":"SP4","teacher":"Lek"},{"date":"2026-10-05","period":5,"course":"EPF","teacher":"Boom"},{"date":"2026-10-06","period":1,"course":"EMA","teacher":"Boom"},{"date":"2026-10-06","period":1,"course":"SP4","teacher":"Lek"},{"date":"2026-10-06","period":1,"course":"MM5","teacher":"Tuang"},{"date":"2026-10-06","period":2,"course":"BM5","teacher":"Baipak"},{"date":"2026-10-06","period":2,"course":"EMF","teacher":"Boom"},{"date":"2026-10-06","period":2,"course":"SP4","teacher":"Lek"},{"date":"2026-10-06","period":3,"course":"BM4","teacher":"Baipak"},{"date":"2026-10-06","period":3,"course":"SM2","teacher":"Lek"},{"date":"2026-10-06","period":3,"course":"MM4e","teacher":"Tuang"},{"date":"2026-10-06","period":4,"course":"BM4","teacher":"Baipak"},{"date":"2026-10-06","period":4,"course":"EP4","teacher":"Boom"},{"date":"2026-10-06","period":4,"course":"MM4e","teacher":"Tuang"},{"date":"2026-10-06","period":5,"course":"EP4","teacher":"Boom"},{"date":"2026-10-06","period":5,"course":"CM4e","teacher":"Lek"},{"date":"2026-10-06","period":5,"course":"MM4","teacher":"Tuang"},{"date":"2026-10-07","period":1,"course":"EPA","teacher":"Boom"},{"date":"2026-10-07","period":1,"course":"SM2","teacher":"Lek"},{"date":"2026-10-07","period":1,"course":"MP4","teacher":"Tuang"},{"date":"2026-10-07","period":2,"course":"EFC","teacher":"Boom"},{"date":"2026-10-07","period":2,"course":"SP5","teacher":"Lek"},{"date":"2026-10-07","period":2,"course":"MP4","teacher":"Tuang"},{"date":"2026-10-07","period":3,"course":"SP6","teacher":"Lek"},{"date":"2026-10-07","period":3,"course":"MP5","teacher":"Tuang"},{"date":"2026-10-07","period":4,"course":"EPF","teacher":"Boom"},{"date":"2026-10-07","period":4,"course":"PM5","teacher":"Lek"},{"date":"2026-10-07","period":4,"course":"MM4","teacher":"Tuang"},{"date":"2026-10-07","period":5,"course":"EPF","teacher":"Boom"},{"date":"2026-10-08","period":1,"course":"EFC","teacher":"Boom"},{"date":"2026-10-08","period":1,"course":"SM2","teacher":"Lek"},{"date":"2026-10-08","period":1,"course":"MP4","teacher":"Tuang"},{"date":"2026-10-08","period":2,"course":"EFC","teacher":"Boom"},{"date":"2026-10-08","period":2,"course":"SP6","teacher":"Lek"},{"date":"2026-10-08","period":2,"course":"MP4","teacher":"Tuang"},{"date":"2026-10-08","period":3,"course":"EMA","teacher":"Boom"},{"date":"2026-10-08","period":3,"course":"PM5","teacher":"Lek"},{"date":"2026-10-08","period":4,"course":"EMA","teacher":"Boom"},{"date":"2026-10-08","period":4,"course":"PM5","teacher":"Lek"},{"date":"2026-10-08","period":4,"course":"MP6","teacher":"Tuang"},{"date":"2026-10-08","period":5,"course":"MM2","teacher":"Tuang"},{"date":"2026-10-09","period":1,"course":"EPF","teacher":"Boom"},{"date":"2026-10-09","period":1,"course":"PM4","teacher":"Lek"},{"date":"2026-10-09","period":1,"course":"MM2","teacher":"Tuang"},{"date":"2026-10-09","period":2,"course":"EPF","teacher":"Boom"},{"date":"2026-10-09","period":2,"course":"PM4","teacher":"Lek"},{"date":"2026-10-09","period":2,"course":"MM2","teacher":"Tuang"},{"date":"2026-10-09","period":3,"course":"EPA","teacher":"Boom"},{"date":"2026-10-09","period":3,"course":"SM2","teacher":"Lek"},{"date":"2026-10-09","period":3,"course":"MM4","teacher":"Tuang"},{"date":"2026-10-09","period":4,"course":"EPA","teacher":"Boom"},{"date":"2026-10-09","period":4,"course":"MM4","teacher":"Tuang"},{"date":"2026-10-09","period":5,"course":"SP5","teacher":"Lek"},{"date":"2026-10-10","period":1,"course":"MM4e","teacher":"Tuang"},{"date":"2026-10-10","period":2,"course":"BM5","teacher":"Baipak"},{"date":"2026-10-10","period":2,"course":"MM4e","teacher":"Tuang"},{"date":"2026-10-10","period":3,"course":"BM4e","teacher":"Baipak"},{"date":"2026-10-10","period":3,"course":"MP4","teacher":"Tuang"},{"date":"2026-10-10","period":4,"course":"BM4e","teacher":"Baipak"},{"date":"2026-10-10","period":4,"course":"MP4","teacher":"Tuang"},{"date":"2026-10-11","period":1,"course":"PM4e","teacher":"Lek"},{"date":"2026-10-11","period":1,"course":"MM4","teacher":"Tuang"},{"date":"2026-10-11","period":2,"course":"PM4","teacher":"Lek"},{"date":"2026-10-11","period":2,"course":"MM5","teacher":"Tuang"},{"date":"2026-10-11","period":3,"course":"SP6","teacher":"Lek"},{"date":"2026-10-11","period":3,"course":"MM4e","teacher":"Tuang"},{"date":"2026-10-11","period":4,"course":"SP4","teacher":"Lek"},{"date":"2026-10-11","period":4,"course":"MM4e","teacher":"Tuang"},{"date":"2026-10-12","period":1,"course":"EFC","teacher":"Boom"},{"date":"2026-10-12","period":1,"course":"SP5","teacher":"Lek"},{"date":"2026-10-12","period":2,"course":"BM5","teacher":"Baipak"},{"date":"2026-10-12","period":2,"course":"SP5","teacher":"Lek"},{"date":"2026-10-12","period":3,"course":"BM4","teacher":"Baipak"},{"date":"2026-10-12","period":3,"course":"EPF","teacher":"Boom"},{"date":"2026-10-12","period":3,"course":"CM4e","teacher":"Lek"},{"date":"2026-10-12","period":4,"course":"BM4","teacher":"Baipak"},{"date":"2026-10-12","period":4,"course":"EPF","teacher":"Boom"},{"date":"2026-10-12","period":5,"course":"EPA","teacher":"Boom"},{"date":"2026-10-12","period":5,"course":"PM4","teacher":"Lek"},{"date":"2026-10-13","period":1,"course":"CM5","teacher":"Base"},{"date":"2026-10-13","period":1,"course":"SP6","teacher":"Lek"},{"date":"2026-10-13","period":2,"course":"CM5","teacher":"Base"},{"date":"2026-10-13","period":2,"course":"SP6","teacher":"Lek"},{"date":"2026-10-13","period":3,"course":"SP4","teacher":"Lek"},{"date":"2026-10-13","period":4,"course":"SP4","teacher":"Lek"},{"date":"2026-10-14","period":1,"course":"CM4","teacher":"Base"},{"date":"2026-10-14","period":1,"course":"EPA","teacher":"Boom"},{"date":"2026-10-14","period":1,"course":"MM4e","teacher":"Tuang"},{"date":"2026-10-14","period":2,"course":"CM4","teacher":"Base"},{"date":"2026-10-14","period":2,"course":"SP6","teacher":"Lek"},{"date":"2026-10-14","period":2,"course":"MP5","teacher":"Tuang"},{"date":"2026-10-14","period":3,"course":"EMF","teacher":"Boom"},{"date":"2026-10-14","period":3,"course":"SP5","teacher":"Lek"},{"date":"2026-10-14","period":3,"course":"MP6","teacher":"Tuang"},{"date":"2026-10-14","period":4,"course":"EMF","teacher":"Boom"},{"date":"2026-10-14","period":4,"course":"SP5","teacher":"Lek"},{"date":"2026-10-14","period":4,"course":"MP6","teacher":"Tuang"},{"date":"2026-10-14","period":5,"course":"EPF","teacher":"Boom"},{"date":"2026-10-14","period":5,"course":"SM2","teacher":"Lek"},{"date":"2026-10-15","period":1,"course":"CM5","teacher":"Base"},{"date":"2026-10-15","period":1,"course":"EMA","teacher":"Boom"},{"date":"2026-10-15","period":1,"course":"SP4","teacher":"Lek"},{"date":"2026-10-15","period":2,"course":"CM5","teacher":"Base"},{"date":"2026-10-15","period":2,"course":"PM4","teacher":"Lek"},{"date":"2026-10-15","period":3,"course":"CM4","teacher":"Base"},{"date":"2026-10-15","period":3,"course":"EP4","teacher":"Boom"},{"date":"2026-10-15","period":3,"course":"SM2","teacher":"Lek"},{"date":"2026-10-15","period":4,"course":"EMF","teacher":"Boom"},{"date":"2026-10-15","period":4,"course":"PM5","teacher":"Lek"},{"date":"2026-10-15","period":5,"course":"EMF","teacher":"Boom"},{"date":"2026-10-16","period":1,"course":"EP4","teacher":"Boom"},{"date":"2026-10-16","period":1,"course":"SP6","teacher":"Lek"},{"date":"2026-10-16","period":1,"course":"MP5","teacher":"Tuang"},{"date":"2026-10-16","period":2,"course":"EP4","teacher":"Boom"},{"date":"2026-10-16","period":2,"course":"SP6","teacher":"Lek"},{"date":"2026-10-16","period":2,"course":"MP5","teacher":"Tuang"},{"date":"2026-10-16","period":3,"course":"SP5","teacher":"Lek"},{"date":"2026-10-16","period":3,"course":"MP6","teacher":"Tuang"},{"date":"2026-10-16","period":4,"course":"EPF","teacher":"Boom"},{"date":"2026-10-16","period":4,"course":"MP4","teacher":"Tuang"},{"date":"2026-10-16","period":5,"course":"EPA","teacher":"Boom"},{"date":"2026-10-16","period":5,"course":"SP4","teacher":"Lek"},{"date":"2026-10-17","period":1,"course":"EMA","teacher":"Boom"},{"date":"2026-10-17","period":1,"course":"MP6","teacher":"Tuang"},{"date":"2026-10-17","period":2,"course":"BM5","teacher":"Baipak"},{"date":"2026-10-17","period":2,"course":"EMA","teacher":"Boom"},{"date":"2026-10-17","period":2,"course":"MP6","teacher":"Tuang"},{"date":"2026-10-17","period":3,"course":"BM4e","teacher":"Baipak"},{"date":"2026-10-17","period":3,"course":"EP4","teacher":"Boom"},{"date":"2026-10-17","period":3,"course":"MM2","teacher":"Tuang"},{"date":"2026-10-17","period":4,"course":"BM4","teacher":"Baipak"},{"date":"2026-10-17","period":4,"course":"EFC","teacher":"Boom"},{"date":"2026-10-17","period":4,"course":"CM4e","teacher":"Lek"},{"date":"2026-10-17","period":5,"course":"SM2","teacher":"Lek"},{"date":"2026-10-17","period":5,"course":"MM4","teacher":"Tuang"},{"date":"2026-10-18","period":1,"course":"EFC","teacher":"Boom"},{"date":"2026-10-18","period":1,"course":"PM4","teacher":"Lek"},{"date":"2026-10-18","period":1,"course":"MM4e","teacher":"Tuang"},{"date":"2026-10-18","period":2,"course":"BM4","teacher":"Baipak"},{"date":"2026-10-18","period":2,"course":"EFC","teacher":"Boom"},{"date":"2026-10-18","period":2,"course":"SP6","teacher":"Lek"},{"date":"2026-10-18","period":3,"course":"BM5","teacher":"Baipak"},{"date":"2026-10-18","period":3,"course":"EMF","teacher":"Boom"},{"date":"2026-10-18","period":3,"course":"MP6","teacher":"Tuang"},{"date":"2026-10-18","period":4,"course":"BM5","teacher":"Baipak"},{"date":"2026-10-18","period":4,"course":"EMF","teacher":"Boom"},{"date":"2026-10-18","period":4,"course":"MP6","teacher":"Tuang"},{"date":"2026-10-18","period":5,"course":"CM5","teacher":"Base"},{"date":"2026-10-18","period":5,"course":"MM2","teacher":"Tuang"},{"date":"2026-10-19","period":1,"course":"EMF","teacher":"Boom"},{"date":"2026-10-19","period":1,"course":"SP5","teacher":"Lek"},{"date":"2026-10-19","period":1,"course":"MP6","teacher":"Tuang"},{"date":"2026-10-19","period":2,"course":"SP5","teacher":"Lek"},{"date":"2026-10-19","period":2,"course":"MM2","teacher":"Tuang"},{"date":"2026-10-19","period":3,"course":"EPA","teacher":"Boom"},{"date":"2026-10-19","period":3,"course":"PM4e","teacher":"Lek"},{"date":"2026-10-19","period":3,"course":"MM4","teacher":"Tuang"},{"date":"2026-10-19","period":4,"course":"EPA","teacher":"Boom"},{"date":"2026-10-19","period":4,"course":"PM4e","teacher":"Lek"},{"date":"2026-10-19","period":5,"course":"EPF","teacher":"Boom"},{"date":"2026-10-19","period":5,"course":"MM4e","teacher":"Tuang"},{"date":"2026-10-20","period":1,"course":"CM4e","teacher":"Lek"},{"date":"2026-10-20","period":1,"course":"MM4","teacher":"Tuang"},{"date":"2026-10-20","period":2,"course":"BM5","teacher":"Baipak"},{"date":"2026-10-20","period":2,"course":"SP4","teacher":"Lek"},{"date":"2026-10-20","period":2,"course":"MM4","teacher":"Tuang"},{"date":"2026-10-20","period":3,"course":"BM4","teacher":"Baipak"},{"date":"2026-10-20","period":3,"course":"PM5","teacher":"Lek"},{"date":"2026-10-20","period":3,"course":"MM4e","teacher":"Tuang"},{"date":"2026-10-20","period":4,"course":"BM4","teacher":"Baipak"},{"date":"2026-10-20","period":4,"course":"PM5","teacher":"Lek"},{"date":"2026-10-20","period":5,"course":"MM5","teacher":"Tuang"},{"date":"2026-10-21","period":1,"course":"SP5","teacher":"Lek"},{"date":"2026-10-21","period":1,"course":"MP6","teacher":"Tuang"},{"date":"2026-10-21","period":2,"course":"SP5","teacher":"Lek"},{"date":"2026-10-21","period":2,"course":"MP6","teacher":"Tuang"},{"date":"2026-10-21","period":3,"course":"MP5","teacher":"Tuang"},{"date":"2026-10-21","period":4,"course":"SP4","teacher":"Lek"},{"date":"2026-10-21","period":4,"course":"MP5","teacher":"Tuang"},{"date":"2026-10-21","period":5,"course":"SP4","teacher":"Lek"},{"date":"2026-10-22","period":1,"course":"EMF","teacher":"Boom"},{"date":"2026-10-22","period":1,"course":"PM5","teacher":"Lek"},{"date":"2026-10-22","period":1,"course":"MP6","teacher":"Tuang"},{"date":"2026-10-22","period":2,"course":"EMF","teacher":"Boom"},{"date":"2026-10-22","period":2,"course":"PM5","teacher":"Lek"},{"date":"2026-10-22","period":2,"course":"MP6","teacher":"Tuang"},{"date":"2026-10-22","period":3,"course":"EMA","teacher":"Boom"},{"date":"2026-10-22","period":3,"course":"SP6","teacher":"Lek"},{"date":"2026-10-22","period":3,"course":"MP4","teacher":"Tuang"},{"date":"2026-10-22","period":4,"course":"EFC","teacher":"Boom"},{"date":"2026-10-22","period":4,"course":"PM4","teacher":"Lek"},{"date":"2026-10-22","period":4,"course":"MM4e","teacher":"Tuang"},{"date":"2026-10-23","period":1,"course":"EPF","teacher":"Boom"},{"date":"2026-10-23","period":1,"course":"PM5","teacher":"Lek"},{"date":"2026-10-23","period":1,"course":"MM4e","teacher":"Tuang"},{"date":"2026-10-23","period":2,"course":"EPF","teacher":"Boom"},{"date":"2026-10-23","period":2,"course":"PM5","teacher":"Lek"},{"date":"2026-10-23","period":2,"course":"MM4e","teacher":"Tuang"},{"date":"2026-10-23","period":3,"course":"EPA","teacher":"Boom"},{"date":"2026-10-23","period":3,"course":"PM4e","teacher":"Lek"},{"date":"2026-10-23","period":3,"course":"MM5","teacher":"Tuang"},{"date":"2026-10-23","period":4,"course":"EPA","teacher":"Boom"},{"date":"2026-10-23","period":4,"course":"CM4e","teacher":"Lek"},{"date":"2026-10-23","period":5,"course":"MP5","teacher":"Tuang"},{"date":"2026-10-24","period":1,"course":"EMF","teacher":"Boom"},{"date":"2026-10-24","period":2,"course":"EP4","teacher":"Boom"},{"date":"2026-10-24","period":3,"course":"EMA","teacher":"Boom"},{"date":"2026-10-24","period":4,"course":"EMA","teacher":"Boom"},{"date":"2026-10-25","period":1,"course":"EMA","teacher":"Boom"},{"date":"2026-10-25","period":1,"course":"SP6","teacher":"Lek"},{"date":"2026-10-25","period":2,"course":"BM5","teacher":"Baipak"},{"date":"2026-10-25","period":2,"course":"EMF","teacher":"Boom"},{"date":"2026-10-25","period":3,"course":"BM4","teacher":"Baipak"},{"date":"2026-10-25","period":3,"course":"EFC","teacher":"Boom"},{"date":"2026-10-25","period":3,"course":"SM2","teacher":"Lek"},{"date":"2026-10-25","period":4,"course":"BM4","teacher":"Baipak"},{"date":"2026-10-25","period":4,"course":"EFC","teacher":"Boom"},{"date":"2026-10-25","period":4,"course":"SM2","teacher":"Lek"},{"date":"2026-10-25","period":5,"course":"CM4","teacher":"Base"},{"date":"2026-10-25","period":5,"course":"PM4e","teacher":"Lek"},{"date":"2026-10-26","period":1,"course":"EPA","teacher":"Boom"},{"date":"2026-10-26","period":1,"course":"PM4","teacher":"Lek"},{"date":"2026-10-26","period":1,"course":"MP4","teacher":"Tuang"},{"date":"2026-10-26","period":2,"course":"CM5","teacher":"Base"},{"date":"2026-10-26","period":2,"course":"EPA","teacher":"Boom"},{"date":"2026-10-26","period":2,"course":"PM4","teacher":"Lek"},{"date":"2026-10-26","period":3,"course":"EPF","teacher":"Boom"},{"date":"2026-10-26","period":3,"course":"PM5","teacher":"Lek"},{"date":"2026-10-26","period":3,"course":"MM4","teacher":"Tuang"},{"date":"2026-10-26","period":4,"course":"EP4","teacher":"Boom"},{"date":"2026-10-26","period":4,"course":"SP6","teacher":"Lek"},{"date":"2026-10-26","period":4,"course":"MP5","teacher":"Tuang"},{"date":"2026-10-26","period":5,"course":"MP5","teacher":"Tuang"},{"date":"2026-10-27","period":1,"course":"CM4","teacher":"Base"},{"date":"2026-10-27","period":1,"course":"SP6","teacher":"Lek"},{"date":"2026-10-27","period":1,"course":"MM4e","teacher":"Tuang"},{"date":"2026-10-27","period":2,"course":"CM4","teacher":"Base"},{"date":"2026-10-27","period":2,"course":"EP4","teacher":"Boom"},{"date":"2026-10-27","period":2,"course":"SP6","teacher":"Lek"},{"date":"2026-10-27","period":3,"course":"CM5","teacher":"Base"},{"date":"2026-10-27","period":3,"course":"EMF","teacher":"Boom"},{"date":"2026-10-27","period":3,"course":"MP4","teacher":"Tuang"},{"date":"2026-10-27","period":4,"course":"EMF","teacher":"Boom"},{"date":"2026-10-27","period":4,"course":"PM5","teacher":"Lek"},{"date":"2026-10-27","period":4,"course":"MP4","teacher":"Tuang"},{"date":"2026-10-27","period":5,"course":"EFC","teacher":"Boom"},{"date":"2026-10-27","period":5,"course":"SP4","teacher":"Lek"},{"date":"2026-10-27","period":5,"course":"MP6","teacher":"Tuang"},{"date":"2026-10-28","period":1,"course":"CM5","teacher":"Base"},{"date":"2026-10-28","period":1,"course":"EPF","teacher":"Boom"},{"date":"2026-10-28","period":1,"course":"PM4e","teacher":"Lek"},{"date":"2026-10-28","period":2,"course":"BM4e","teacher":"Baipak"},{"date":"2026-10-28","period":2,"course":"EPF","teacher":"Boom"},{"date":"2026-10-28","period":2,"course":"MM2","teacher":"Tuang"},{"date":"2026-10-28","period":3,"course":"BM5","teacher":"Baipak"},{"date":"2026-10-28","period":3,"course":"EPA","teacher":"Boom"},{"date":"2026-10-28","period":3,"course":"MM4e","teacher":"Tuang"},{"date":"2026-10-28","period":4,"course":"BM5","teacher":"Baipak"},{"date":"2026-10-28","period":4,"course":"EPA","teacher":"Boom"},{"date":"2026-10-28","period":4,"course":"MM4e","teacher":"Tuang"},{"date":"2026-10-28","period":5,"course":"SP6","teacher":"Lek"},{"date":"2026-10-28","period":5,"course":"MP5","teacher":"Tuang"},{"date":"2026-10-29","period":1,"course":"SM2","teacher":"Lek"},{"date":"2026-10-29","period":1,"course":"MM4","teacher":"Tuang"},{"date":"2026-10-29","period":2,"course":"BM4","teacher":"Baipak"},{"date":"2026-10-29","period":2,"course":"SP4","teacher":"Lek"},{"date":"2026-10-29","period":2,"course":"MM4e","teacher":"Tuang"},{"date":"2026-10-29","period":3,"course":"BM4e","teacher":"Baipak"},{"date":"2026-10-29","period":3,"course":"PM4","teacher":"Lek"},{"date":"2026-10-29","period":3,"course":"MM2","teacher":"Tuang"},{"date":"2026-10-29","period":4,"course":"BM4e","teacher":"Baipak"},{"date":"2026-10-29","period":4,"course":"PM4","teacher":"Lek"},{"date":"2026-10-29","period":4,"course":"MP4","teacher":"Tuang"},{"date":"2026-10-30","period":1,"course":"EP4","teacher":"Boom"},{"date":"2026-10-30","period":1,"course":"MP5","teacher":"Tuang"},{"date":"2026-10-30","period":2,"course":"MP5","teacher":"Tuang"},{"date":"2026-10-30","period":3,"course":"EPA","teacher":"Boom"},{"date":"2026-10-30","period":3,"course":"MP4","teacher":"Tuang"},{"date":"2026-10-30","period":4,"course":"EPA","teacher":"Boom"},{"date":"2026-10-30","period":5,"course":"EPF","teacher":"Boom"},{"date":"2026-10-30","period":5,"course":"MM4","teacher":"Tuang"},{"date":"2026-10-31","period":1,"course":"EMA","teacher":"Boom"},{"date":"2026-10-31","period":1,"course":"MP6","teacher":"Tuang"},{"date":"2026-10-31","period":2,"course":"EMF","teacher":"Boom"},{"date":"2026-10-31","period":2,"course":"MP6","teacher":"Tuang"},{"date":"2026-10-31","period":3,"course":"EP4","teacher":"Boom"},{"date":"2026-10-31","period":3,"course":"MM4e","teacher":"Tuang"},{"date":"2026-10-31","period":4,"course":"EFC","teacher":"Boom"},{"date":"2026-10-31","period":4,"course":"MM5","teacher":"Tuang"}];
+let data=[],view='overview';
+function localDate(s){const [y,m,d]=s.split('-').map(Number);return new Date(y,m-1,d)}
+function fmtDay(s){return localDate(s).toLocaleDateString('en-US',{weekday:'short'})}
+function chosenEvents(){
+ if(view==='overview') return data;
+ if(view==='teacher'){const t=document.getElementById('teacherSelect').value;return data.filter(e=>e.teacher===t)}
+ const selected=getSelectedPathways();
+ const courseSet=new Set(selected.flatMap(g=>groups[g]||[]));
+ if(document.getElementById('efcToggle').checked) courseSet.add('EFC');
+ return data.filter(e=>courseSet.has(e.course));
+}
+function render(){
+ document.querySelectorAll('.tab').forEach(b=>b.classList.toggle('active',b.dataset.view===view));
+ teacherSelect.hidden=view!=='teacher';
+ pathwayPicker.hidden=view!=='student';
+ efcToggleWrap.hidden=view!=='student';
+ if(view!=='student') togglePathwayMenu(false);
+ updatePathwayPicker();
+ const ev=chosenEvents();renderSummary(ev);renderCalendar(ev);renderPathwayLegend();
+}
+function renderSummary(ev){
+ const days=new Set(ev.map(e=>e.date)).size;const periodsCount=ev.length;const courses=new Set(ev.map(e=>e.course)).size;const maxDay=Math.max(0,...[...new Set(ev.map(e=>e.date))].map(d=>ev.filter(e=>e.date===d).length));
+ let html=`<div class="stat"><b>${periodsCount}</b><span>Periods shown</span></div><div class="stat"><b>${days}</b><span>Active days</span></div><div class="stat"><b>${courses}</b><span>Courses shown</span></div><div class="stat"><b>${maxDay}</b><span>Max periods in a shown day</span></div>`;
+ if(view==='teacher'){const t=teacherSelect.value; const offs=31-days; html+=`<div class="stat"><b>${offs}</b><span>Days without teaching</span></div>`}
+ summary.innerHTML=html;
+}
+function renderCalendar(ev){
+ const first=new Date(2026,9,1); const startOffset=(first.getDay()+6)%7; let html=['Mon','Tue','Wed','Thu','Fri','Sat','Sun'].map(x=>`<div class="dow">${x}</div>`).join('');
+ for(let i=0;i<startOffset;i++) html+='<div></div>';
+ for(let d=1;d<=31;d++){
+  const ds=`2026-10-${String(d).padStart(2,'0')}`;const dayEv=ev.filter(e=>e.date===ds).sort((a,b)=>a.period-b.period||a.course.localeCompare(b.course));
+  html+=`<div class="day"><div class="dayhead"><span class="date">${d} ${fmtDay(ds)}</span><span class="count">${dayEv.length}P</span></div>`;
+  if(dayEv.length){
+   const byPeriod={};
+   dayEv.forEach(e=>(byPeriod[e.period]??=[]).push(e));
+   html+=Object.keys(byPeriod).sort((a,b)=>a-b).map(p=>{
+    const same=byPeriod[p];
+    const cols=Math.max(1,same.length);
+    return `<div class="period-row" style="grid-template-columns:repeat(${cols},minmax(0,1fr))">${same.map(e=>{
+      const outline=coursePathOutline(e.course);
+      const cls=outline?' path-outlined':'';
+      const style=outline?` style="--path-outline:${outline}"`:'';
+      return `<div class="event ${e.teacher}${cls}"${style}><strong>T${e.period} ${e.course}</strong><small>${periods[e.period]} - ${teacherNames[e.teacher]}</small></div>`;
+    }).join('')}</div>`;
+   }).join('');
+  }else html+='<div class="empty">No class</div>';
+  html+='</div>';
+ }
+ calendar.innerHTML=html;
+}
+function renderChecks(){
+ const room={};data.forEach(e=>{const k=e.date+'-'+e.period;room[k]=(room[k]||0)+1});const maxRoom=Math.max(...Object.values(room));
+ const teacherDay={};data.forEach(e=>{const k=e.teacher+'-'+e.date;teacherDay[k]=(teacherDay[k]||0)+1});
+ const teacherSlot={};data.forEach(e=>{const k=e.teacher+'-'+e.date+'-'+e.period;teacherSlot[k]=(teacherSlot[k]||0)+1});
+ const teacherOverlaps=Object.values(teacherSlot).filter(v=>v>1).length;
+ const maxFT=Math.max(...Object.entries(teacherDay).filter(([k])=>/^(Tuang|Lek|Boom)-/.test(k)).map(([,v])=>v));
+ const ftWork={};['Tuang','Lek','Boom'].forEach(t=>ftWork[t]=new Set(data.filter(e=>e.teacher===t).map(e=>e.date)).size);
+ const lekUnavailable=data.filter(e=>e.teacher==='Lek'&&[3,4,30,31].includes(localDate(e.date).getDate())).length;
+ const lekSaturdayBad=data.filter(e=>e.teacher==='Lek'&&localDate(e.date).getDay()===6&&![4,5].includes(e.period)).length;
+ const lekByDay={};data.filter(e=>e.teacher==='Lek').forEach(e=>lekByDay[e.date]=(lekByDay[e.date]||0)+1);
+ const lekShortDays=Object.entries(lekByDay).filter(([,n])=>n<2);
+
+ const counts={};data.forEach(e=>counts[e.course]=(counts[e.course]||0)+1);
+ const courseMismatch=Object.keys(target).filter(c=>counts[c]!==target[c]);
+
+ const courseDay={};data.forEach(e=>{const k=e.course+'-'+e.date;(courseDay[k]??=[]).push(e.period)});
+ const repeatCases=Object.entries(courseDay).filter(([,ps])=>ps.length>1);
+ const allowedPairs=['1,2','3,4','4,5'];
+ const badRepeats=repeatCases.filter(([,ps])=>ps.length>2||!allowedPairs.includes([...ps].sort((a,b)=>a-b).join(',')));
+
+ const p5Courses=['MP5','SP5','EPF','EPA'];
+ const p5WrongDay=data.filter(e=>p5Courses.includes(e.course)&&![1,3,5].includes(localDate(e.date).getDay())).length;
+
+ const baseBad=data.filter(e=>{
+   if(e.teacher!=='Base')return false;
+   const dt=localDate(e.date),wd=dt.getDay(),allowed=[13,14,15,18,25,26,27,28];
+   if(!allowed.includes(dt.getDate())||wd===6)return true;
+   if(wd===0)return ![3,4,5].includes(e.period);
+   return ![1,2,3].includes(e.period);
+ }).length;
+
+ const baipakByDay={};
+ data.filter(e=>e.teacher==='Baipak').forEach(e=>(baipakByDay[e.date]??=[]).push(e.period));
+ const baipakDays=Object.keys(baipakByDay);
+ const goodBlocks=['2,3,4'];
+ const baipakBad=baipakDays.filter(d=>!goodBlocks.includes([...baipakByDay[d]].sort((a,b)=>a-b).join(',')));
+ const baipakThree=baipakDays.filter(d=>baipakByDay[d].length===3).length;
+ const baipakTwo=baipakDays.filter(d=>baipakByDay[d].length===2).length;
+
+ function maxRun(days){
+   const ds=[...new Set(days.map(Number))].sort((a,b)=>a-b);
+   let best=0,cur=0,prev=null;
+   ds.forEach(d=>{cur=(prev!==null&&d===prev+1)?cur+1:1;best=Math.max(best,cur);prev=d});
+   return best;
+ }
+
+ const studentClashes=[],studentOver4=[],badThree=[],runIssues=[],runEFCIssues=[];
+ const efcDays=data.filter(e=>e.course==='EFC').map(e=>Number(e.date.slice(-2)));
+
+ Object.entries(groups).forEach(([g,cs])=>{
+   for(let d=1;d<=31;d++){
+     const ds=`2026-10-${String(d).padStart(2,'0')}`;
+     const es=data.filter(e=>e.date===ds&&cs.includes(e.course));
+     const byP={};es.forEach(e=>byP[e.period]=(byP[e.period]||0)+1);
+     if(Object.values(byP).some(v=>v>1))studentClashes.push(g+' '+d);
+     if(es.length>4)studentOver4.push(g+' '+d);
+
+     const distinct=new Set(es.map(e=>e.course)).size;
+     if(es.length===3&&distinct===3){
+       const ps=es.map(e=>e.period).sort((a,b)=>a-b).join(',');
+       if(ps!=='1,2,3'&&ps!=='2,3,4')badThree.push(g+' '+d);
+     }
+   }
+   const days=[...new Set(data.filter(e=>cs.includes(e.course)).map(e=>Number(e.date.slice(-2))))];
+   const r=maxRun(days);
+   const rE=maxRun([...days,...efcDays]);
+   if(r>4)runIssues.push(g+' '+r);
+   if(rE>4)runEFCIssues.push(g+' '+rE);
+ });
+
+
+ function offShape(t){
+   const worked=new Set(data.filter(e=>e.teacher===t).map(e=>Number(e.date.slice(-2))));
+   const off=[];for(let d=1;d<=31;d++)if(!worked.has(d))off.push(d);
+   const os=new Set(off);let pairs=0,triples=0,singles=0;
+   for(let d=1;d<=30;d++)if(os.has(d)&&os.has(d+1))pairs++;
+   for(let d=1;d<=29;d++)if(os.has(d)&&os.has(d+1)&&os.has(d+2))triples++;
+   off.forEach(d=>{if(!os.has(d-1)&&!os.has(d+1))singles++});
+   return {off,pairs,triples,singles,ok:off.length===6&&pairs===2&&triples===0&&singles===2};
+ }
+ const tuangOff=offShape('Tuang'),boomOff=offShape('Boom');
+ const checks=[
+  [`Course period targets`,courseMismatch.length===0,courseMismatch.length?'Mismatch: '+courseMismatch.join(', '):'All requested course totals match'],
+  [`3 classroom capacity`,maxRoom<=3,`Maximum simultaneous classes: ${maxRoom}`],
+  [`Teacher overlap rule`,teacherOverlaps===0,teacherOverlaps===0?'No teacher overlaps':`${teacherOverlaps} overlaps found`],
+  [`Full-time daily maximum`,maxFT<=4,`Maximum full-time teacher load: ${maxFT} periods in one day`],
+  [`Full-time working-day maximum`,Object.values(ftWork).every(v=>v<=25),`Tuang ${ftWork.Tuang} days - Lek ${ftWork.Lek} days - Boom ${ftWork.Boom} days`],
+  [`Kru Tuang off-day pattern`,tuangOff.ok,`Off: ${tuangOff.off.join(', ')} - 2 pairs + 2 singles required`],
+  [`Kru Boom off-day pattern`,boomOff.ok,`Off: ${boomOff.off.join(', ')} - 2 pairs + 2 singles required`],
+  [`Kru Lek unavailable dates`,lekUnavailable===0,lekUnavailable===0?'No classes on 3 4 30 31 October':`${lekUnavailable} lessons on unavailable dates`],
+  [`Kru Lek Saturday periods`,lekSaturdayBad===0,lekSaturdayBad===0?'Saturday teaching uses only T4 or T5':`${lekSaturdayBad} invalid Saturday periods`],
+  [`Kru Lek minimum visit`,lekShortDays.length===0,lekShortDays.length===0?'At least 2 periods on every teaching day':`${lekShortDays.length} teaching days have fewer than 2 periods`],
+  [`Kru Base availability`,baseBad===0,baseBad===0?'All Base lessons fit permitted dates and periods':`${baseBad} invalid Base slots`],
+  [`P5 Monday Wednesday Friday`,p5WrongDay===0,p5WrongDay===0?'MP5 SP5 EPF and EPA are only on Monday Wednesday Friday':`${p5WrongDay} lessons outside M W F`],
+  [`Repeated subject rule`,badRepeats.length===0,badRepeats.length===0?'All repeats are limited to 2 adjacent periods':`${badRepeats.length} invalid repeated course-days`],
+  [`Kru Baipak always T2-T3-T4`,baipakBad.length===0,`${baipakDays.length} visits - ${baipakThree} three-period visits - ${baipakTwo} two-period visits - ${baipakBad.length} invalid blocks`],
+  [`Student clash rule`,studentClashes.length===0,studentClashes.length===0?'No required-path period clashes':`${studentClashes.length} clashes found`],
+  [`Student daily maximum`,studentOver4.length===0,studentOver4.length===0?'All pathways have at most 4 periods per day':`${studentOver4.length} days exceed 4 periods`],
+  [`3-subject compact pattern`,badThree.length===0,badThree.length===0?'All 3-subject days use T1-T3 or T2-T4':`${badThree.length} invalid days`],
+  [`Maximum 4 consecutive attendance days`,runIssues.length===0,runIssues.length===0?'All pathways stay at 4 consecutive days or fewer':runIssues.join(', ')],
+  [`Maximum 4 consecutive days with EFC`,runEFCIssues.length===0,runEFCIssues.length===0?'All pathways still stay at 4 consecutive days or fewer with EFC':runEFCIssues.join(', ')]
+ ];
+ checksEl=document.getElementById('checks');
+ checksEl.innerHTML=checks.map(([n,ok,msg])=>`<div class="check"><b class="${ok?'ok':'warn'}">${ok?'PASS':'CHECK'} - ${n}</b><br><span>${msg}</span></div>`).join('');
+}
+function currentViewLabel(){
+ if(view==='teacher') return `Teacher - ${teacherNames[teacherSelect.value]}`;
+ if(view==='student') return `Student - ${selectedPathwayText()}${efcToggle.checked?' + EFC':''}`;
+ return 'Overview';
+}
+function safeFilename(){return `Infinia_Academy_October_2026_${currentViewLabel()}`.replace(/[^a-z0-9]+/gi,'_').replace(/^_|_$/g,'')}
+function syncControlState(root){
+ const original=[...document.querySelectorAll('select,input')];
+ const cloned=[...root.querySelectorAll('select,input')];
+ cloned.forEach((el,i)=>{
+   const src=original[i]; if(!src)return;
+   if(el.tagName==='SELECT') [...el.options].forEach((o,j)=>o.selected=j===src.selectedIndex);
+   if(el.type==='checkbox'||el.type==='radio'){if(src.checked)el.setAttribute('checked','checked');else el.removeAttribute('checked')}
+ });
+}
+function escSvg(v){return String(v).replace(/[&<>\"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]))}
+function downloadTextFile(text,type,name){
+ const blob=new Blob([text],{type});const url=URL.createObjectURL(blob);const a=document.createElement('a');a.href=url;a.download=name;document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),1500);
+}
+function exportSvg(){
+ const btn=document.getElementById('exportBtn');btn.disabled=true;btn.textContent='Creating image...';
+ try{
+   const ev=chosenEvents();
+   const W=2240,pad=36,contentW=W-pad*2,gap=12;
+   const colors={bg:'#f6f7fb',card:'#ffffff',text:'#172033',muted:'#667085',line:'#dfe3ea',accent:'#3448c5',header:'#101828',Tuang:'#ffe4e6',Lek:'#dbeafe',Boom:'#fef3c7',Baipak:'#dcfce7',Base:'#ede9fe'};
+   const exportPaths=getSelectedPathways();const exportMulti=view==='student'&&exportPaths.length>1;const pathLegendH=exportMulti?58:0;
+   const stats=[[ev.length,'Periods shown'],[new Set(ev.map(e=>e.date)).size,'Active days'],[new Set(ev.map(e=>e.course)).size,'Courses shown'],[Math.max(0,...[...new Set(ev.map(e=>e.date))].map(d=>ev.filter(e=>e.date===d).length)),'Max periods in a shown day']];
+   if(view==='teacher')stats.push([31-new Set(ev.map(e=>e.date)).size,'Days without teaching']);
+  
+ function offShape(t){
+   const worked=new Set(data.filter(e=>e.teacher===t).map(e=>Number(e.date.slice(-2))));
+   const off=[];for(let d=1;d<=31;d++)if(!worked.has(d))off.push(d);
+   const os=new Set(off);let pairs=0,triples=0,singles=0;
+   for(let d=1;d<=30;d++)if(os.has(d)&&os.has(d+1))pairs++;
+   for(let d=1;d<=29;d++)if(os.has(d)&&os.has(d+1)&&os.has(d+2))triples++;
+   off.forEach(d=>{if(!os.has(d-1)&&!os.has(d+1))singles++});
+   return {off,pairs,triples,singles,ok:off.length===6&&pairs===2&&triples===0&&singles===2};
+ }
+ const tuangOff=offShape('Tuang'),boomOff=offShape('Boom');
+   const first=new Date(2026,9,1),offset=(first.getDay()+6)%7,cells=[];
+   for(let i=0;i<offset;i++)cells.push(null);
+   for(let d=1;d<=31;d++){
+     const ds=`2026-10-${String(d).padStart(2,'0')}`;const dayEv=ev.filter(e=>e.date===ds).sort((a,b)=>a.period-b.period||a.course.localeCompare(b.course));const by={};dayEv.forEach(e=>(by[e.period]??=[]).push(e));cells.push({d,ds,events:dayEv,by});
+   }
+   while(cells.length%7)cells.push(null);
+   const colW=(contentW-gap*6)/7,dayHead=44,eventH=70,pgap=8,dayPad=12,minDayH=190,weekH=[];
+   for(let w=0;w<cells.length/7;w++){let mp=0;for(let c=0;c<7;c++){const cell=cells[w*7+c];if(cell)mp=Math.max(mp,Object.keys(cell.by).length)}weekH.push(Math.max(minDayH,dayPad+dayHead+mp*(eventH+pgap)+dayPad))}
+   const headerH=150,toolbarH=82,legendH=64,statCols=Math.min(5,stats.length),statRows=Math.ceil(stats.length/statCols),statsH=statRows*112+Math.max(0,statRows-1)*12;
+   const weekdayH=48,calH=weekH.reduce((a,b)=>a+b,0)+gap*(weekH.length-1),H=headerH+toolbarH+legendH+pathLegendH+statsH+22+weekdayH+calH+90;
+   let s=[];
+   const rect=(x,y,w,h,fill,stroke='#dfe3ea',r=12,strokeW=1)=>s.push(`<rect x="${x}" y="${y}" width="${w}" height="${h}" rx="${r}" fill="${fill}" stroke="${stroke}" stroke-width="${strokeW}"/>`);
+   const text=(x,y,t,size=18,weight=400,fill=colors.text,anchor='start')=>s.push(`<text x="${x}" y="${y}" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Arial,sans-serif" font-size="${size}" font-weight="${weight}" fill="${fill}" text-anchor="${anchor}">${escSvg(t)}</text>`);
+   const wrap=(x,y,t,maxChars,size=15,fill=colors.text,maxLines=3)=>{const words=String(t).split(/\s+/);let line='',lines=[];for(const w of words){const test=line?line+' '+w:w;if(test.length>maxChars&&line){lines.push(line);line=w}else line=test}if(line)lines.push(line);lines.slice(0,maxLines).forEach((ln,i)=>text(x,y+i*(size+5),ln,size,400,fill));};
+   s.push(`<svg xmlns="http://www.w3.org/2000/svg" width="${W}" height="${H}" viewBox="0 0 ${W} ${H}"><rect width="100%" height="100%" fill="${colors.bg}"/>`);
+   s.push(`<rect x="0" y="0" width="${W}" height="${headerH}" fill="${colors.header}"/>`);text(pad,58,'October 2026 Course Calendar',38,750,'#fff');text(pad,102,'Infinia Academy',22,400,'#cfd4dc');rect(W-520,32,484,62,'#283244','#526074',31);text(W-492,70,currentViewLabel(),24,650,'#fff');
+   let y=headerH+22,x=pad;for(const t of ['Overview','Teacher','Student']){const active=t.toLowerCase()===view,w=t==='Overview'?150:132;rect(x,y,w,52,active?colors.accent:'#fff',active?colors.accent:colors.line,12);text(x+22,y+34,t,20,active?650:500,active?'#fff':colors.text);x+=w+12}
+   if(view==='teacher'){rect(x,y,300,52,'#fff',colors.line,12);text(x+20,y+34,teacherNames[teacherSelect.value],20,550)}else if(view==='student'){rect(x,y,480,52,'#fff',colors.line,12);text(x+20,y+34,selectedPathwayText(),20,550);x+=492;rect(x,y,160,52,efcToggle.checked?'#e8edff':'#fff',efcToggle.checked?colors.accent:colors.line,12);text(x+24,y+34,efcToggle.checked?'EFC On':'EFC Off',20,550)}
+   y+=toolbarH;x=pad;for(const [name,key] of [['Kru Tuang','Tuang'],['Kru Lek','Lek'],['Kru Boom','Boom'],['Kru Baipak','Baipak'],['Kru Base','Base']]){const w=name==='Kru Baipak'?170:145;rect(x,y,w,42,colors[key],colors.line,21);text(x+16,y+28,name,17,500);x+=w+10}y+=legendH;
+   if(exportMulti){
+     x=pad;for(const g of exportPaths){const w=Math.max(140,Math.min(250,70+g.length*10));rect(x,y,w,38,'#fff',pathwayColors[g],18,4);text(x+14,y+26,g,15,600,pathwayColors[g]);x+=w+10}
+     rect(x,y,168,38,'#fff',sharedPathColor,18,4);text(x+14,y+26,'Shared course',15,600,sharedPathColor);y+=pathLegendH;
+   }
+   const sw=(contentW-12*(statCols-1))/statCols;stats.forEach(([v,l],i)=>{const row=Math.floor(i/statCols),col=i%statCols,xx=pad+col*(sw+12),yy=y+row*124;rect(xx,yy,sw,112,'#fff',colors.line,16);text(xx+22,yy+45,v,34,750);text(xx+22,yy+78,l,17,450,colors.muted)});y+=statsH+20;
+   ['MON','TUE','WED','THU','FRI','SAT','SUN'].forEach((d,i)=>text(pad+i*(colW+gap)+8,y+30,d,18,750,colors.muted));y+=weekdayH;
+   for(let w=0;w<cells.length/7;w++){
+     const rh=weekH[w];for(let c=0;c<7;c++){const cell=cells[w*7+c],xx=pad+c*(colW+gap);if(!cell)continue;rect(xx,y,colW,rh,'#fff',colors.line,16);text(xx+12,y+30,`${cell.d} ${fmtDay(cell.ds)}`,20,750);text(xx+colW-16,y+30,`${cell.events.length}P`,15,500,colors.muted,'end');let ey=y+dayHead+8;for(const p of Object.keys(cell.by).sort((a,b)=>a-b)){const same=cell.by[p],eg=6,ew=(colW-dayPad*2-eg*(same.length-1))/same.length;same.forEach((e,j)=>{const ex=xx+dayPad+j*(ew+eg);const oc=exportMulti?coursePathOutline(e.course):null;rect(ex,ey,ew,eventH,colors[e.teacher]||'#fff',oc||'#d8dde6',9,oc?5:1);text(ex+9,ey+23,`T${e.period} ${e.course}`,16,750);text(ex+9,ey+43,periods[e.period],13,450,'#475467');text(ex+9,ey+61,teacherNames[e.teacher],13,450,'#475467')});ey+=eventH+pgap}}
+     y+=rh+gap;
+   }
+   text(pad,y+28,`Exported view: ${currentViewLabel()}`,15,500,colors.muted);text(W-pad,y+28,'Infinia Academy',15,600,colors.muted,'end');s.push('</svg>');
+   downloadTextFile(s.join(''),'image/svg+xml;charset=utf-8',safeFilename()+'_Full_UI.svg');
+ }catch(err){console.error(err);alert('Image export failed: '+(err?.message||err));}
+ finally{btn.disabled=false;btn.textContent='Export'}
+}
+function exportPdf(){
+ const old=document.title;document.getElementById('printContext').textContent=currentViewLabel();document.title=safeFilename();
+ const restore=()=>{document.title=old;window.removeEventListener('afterprint',restore)};window.addEventListener('afterprint',restore);
+ window.print();setTimeout(()=>{if(document.title!==old)document.title=old},15000);
+}
+function exportCurrent(){document.getElementById('exportFormat').value==='pdf'?exportPdf():exportSvg()}
+async function init(){
+ // Opening index.html directly from Finder uses file://, where browsers often block fetch() of local JSON.
+ // Use the embedded copy in that case; keep schedule.json for hosted deployments and easy editing.
+ data=embeddedSchedule;
+ if(location.protocol!=='file:'){
+   try{
+     const r=await fetch('schedule.json',{cache:'no-store'});
+     if(r.ok) data=await r.json();
+   }catch(err){ console.warn('Using embedded schedule fallback',err); }
+ }
+ teacherSelect.innerHTML=Object.entries(teacherNames).map(([v,n])=>`<option value="${v}">${n}</option>`).join('');
+ pathwayOptions.innerHTML=Object.keys(groups).map(g=>`<label class="pathway-option"><input type="checkbox" value="${g}"><span class="pathway-dot" style="background:${pathwayColors[g]}"></span><span>${g}</span></label>`).join('');
+ pathwayOptions.querySelectorAll('input').forEach(cb=>cb.onchange=()=>{
+   const next=[...pathwayOptions.querySelectorAll('input:checked')].map(x=>x.value);
+   if(!next.length){cb.checked=true;return}
+   selectedPathways=next;updatePathwayPicker();render();
+ });
+ pathwayPickerBtn.onclick=()=>togglePathwayMenu();
+ pathwayClear.onclick=()=>{selectedPathways=['P4'];updatePathwayPicker();render();};
+ document.addEventListener('click',e=>{if(!pathwayPicker.contains(e.target))togglePathwayMenu(false)});
+ legend.innerHTML=Object.entries(teacherNames).map(([t,n])=>`<span class="pill ${t}">${n}</span>`).join('');
+ document.querySelectorAll('.tab').forEach(b=>b.onclick=()=>{view=b.dataset.view;render()});
+ teacherSelect.onchange=render;efcToggle.onchange=render;document.getElementById('exportBtn').onclick=exportCurrent;updatePathwayPicker();render();
+ if('serviceWorker' in navigator)navigator.serviceWorker.register('sw.js').catch(()=>{});
+}
+init();
+</script>
+</body></html>
