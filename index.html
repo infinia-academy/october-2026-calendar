@@ -38,6 +38,29 @@ header h1{font-size:20px;margin:0 0 4px} header p{margin:0;color:#cfd4dc;font-si
 .event.path-outlined{box-shadow:inset 0 0 0 3px var(--path-outline)}
 @media(max-width:560px){.pathway-picker,.pathway-picker-btn{width:100%;min-width:0}.pathway-menu{width:100%}}
 
+
+/* Course price calculator */
+.calc-btn{border:1px solid #293a9b;background:#fff;color:#293a9b;border-radius:10px;padding:9px 14px;font-size:14px;font-weight:700;cursor:pointer}.calc-btn:hover{background:#f5f7ff}
+.calc-overlay{position:fixed;inset:0;background:#10182880;z-index:80;display:grid;place-items:center;padding:12px}.calc-overlay[hidden]{display:none!important}
+.calc-modal{width:min(1160px,100%);max-height:96vh;overflow:auto;background:#fff;border-radius:18px;box-shadow:0 28px 70px #10182855;border:1px solid #ffffff55}
+.calc-head{display:flex;align-items:flex-start;justify-content:space-between;gap:14px;padding:17px 20px 12px;border-bottom:1px solid var(--line)}
+.calc-head h2{font-size:20px;margin:0 0 3px}.calc-head p{font-size:12px;color:var(--muted);margin:0}.calc-close{border:0;background:#f2f4f7;color:#475467;width:34px;height:34px;border-radius:10px;font-size:22px;line-height:1;cursor:pointer}
+.calc-body{padding:15px 20px 19px}.calc-grid{display:grid;grid-template-columns:1fr 1fr;gap:11px}.calc-field{display:flex;flex-direction:column;gap:5px}.calc-field.full{grid-column:1/-1}.calc-field label{font-size:12px;font-weight:750;color:#475467}.calc-field select,.calc-field input{width:100%;border:1px solid var(--line);background:#fff;border-radius:9px;padding:9px 10px;font-size:14px;color:var(--text);min-width:0}.calc-field input:focus,.calc-field select:focus{outline:2px solid #3448c522;border-color:var(--accent)}
+.subject-picks{display:flex;gap:7px;flex-wrap:wrap}.subject-chip{display:inline-flex!important;align-items:center;gap:7px;border:1px solid var(--line);border-radius:999px;padding:6px 9px;background:#fff;cursor:pointer;font-size:12px!important;font-weight:600!important;color:var(--text)!important}.subject-chip:has(input:checked){border-color:#98a2ff;background:#f4f5ff}.subject-chip input{width:15px!important;height:15px;margin:0;padding:0}.subject-chip small{font-size:10px;color:var(--muted);font-weight:600}
+.calc-toggle{display:flex;align-items:center;gap:10px;border:1px solid #f1d28a;border-radius:11px;padding:10px 11px;background:#fffbeb}.calc-toggle input{width:18px!important;height:18px;margin:0}.calc-toggle strong{display:block;font-size:13px}.calc-toggle small{display:block;color:#765a18;font-size:11px;margin-top:2px}
+.calc-preview-wrap{margin-top:14px;border-top:1px solid var(--line);padding-top:12px}.calc-preview-head{display:flex;align-items:flex-end;justify-content:space-between;gap:12px;margin-bottom:7px}.calc-preview-head h3{font-size:15px;margin:0 0 2px}.calc-preview-head p{font-size:11px;color:var(--muted);margin:0}.calc-preview-count{font-size:11px;font-weight:700;color:#475467;background:#f2f4f7;padding:5px 8px;border-radius:999px;white-space:nowrap}
+.mini-weekdays,.mini-calendar{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:4px}.mini-weekdays{margin-bottom:4px}.mini-weekdays span{text-align:center;font-size:9px;font-weight:800;color:#98a2b3;letter-spacing:.03em}.mini-day{min-height:68px;border:1px solid var(--line);border-radius:8px;background:#fff;padding:4px;overflow:hidden}.mini-day.out-range{background:#fafafa}.mini-date{display:flex;align-items:center;justify-content:space-between;font-size:9px;font-weight:800;color:#475467;margin-bottom:3px}.mini-day.out-range .mini-date{color:#b7bec8}.mini-events{display:grid;gap:3px}.mini-lesson{appearance:none;width:100%;text-align:left;border:1px solid #aeb8ff;background:#eef0ff;color:#2437a6;border-radius:6px;padding:3px 5px;font-size:8.5px;font-weight:800;line-height:1.15;cursor:pointer;display:flex;justify-content:space-between;gap:5px}.mini-lesson .lesson-name{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.mini-lesson .lesson-time{font-weight:650;opacity:.75;white-space:nowrap;font-size:7.5px}.mini-lesson.efc{border-color:#f5c66c;background:#fff7df;color:#8a5800}.mini-lesson.off{background:#fff;border-color:#d0d5dd;color:#98a2b3;text-decoration:line-through;opacity:.68}.mini-empty{font-size:9px;color:#c0c6d0}.calc-hint{margin-top:6px;font-size:9.5px;color:var(--muted)}
+.calc-summary{margin-top:14px;display:grid;grid-template-columns:repeat(3,1fr);gap:8px}.calc-result{background:#fff;border:1px solid var(--line);border-radius:11px;padding:10px}.calc-result b{display:block;font-size:19px;margin-top:3px}.calc-result span{font-size:9.5px;color:var(--muted);text-transform:uppercase;letter-spacing:.04em;font-weight:750}.calc-pricing{margin-top:9px;display:grid;grid-template-columns:1fr 1fr;gap:9px}.price-case{border:1px solid var(--line);border-radius:13px;padding:12px;background:#fff}.price-case.early{border-color:#f3c15f;background:#fffdf6}.price-case h4{margin:0 0 4px;font-size:13px}.price-case .deadline{font-size:10px;color:var(--muted);margin-bottom:8px}.price-case .big-price{font-size:25px;font-weight:850;color:#2437a6;letter-spacing:-.02em}.price-case .breakdown{font-size:10.5px;color:#667085;line-height:1.45;margin-top:7px}.price-case .promo{display:inline-flex;margin-top:8px;padding:4px 7px;border-radius:999px;background:#ecfdf3;color:#027a48;font-size:9.5px;font-weight:800}.price-case.early .promo{background:#fff3cf;color:#8a5800}.calc-statusline{margin-top:9px;padding:9px 11px;border-radius:11px;background:#f8fafc;border:1px solid var(--line);font-size:10.5px;color:#667085;line-height:1.45}.calc-error{color:#b42318;font-size:12px;margin-top:9px;display:none}.calc-error.show{display:block}
+
+.customer-toggle{display:flex;align-items:center;gap:7px;margin-left:auto;margin-right:4px;border:1px solid #d0d5dd;background:#fff;border-radius:999px;padding:6px 10px;font-size:11px;font-weight:750;color:#475467;cursor:pointer;white-space:nowrap}.customer-toggle input{width:15px;height:15px;margin:0}
+.customer-banner{display:none;margin:14px 20px 0;border:1px solid #f3c15f;background:linear-gradient(135deg,#fff9e8,#fffdf7);border-radius:14px;padding:13px 16px}.customer-banner strong{display:block;font-size:18px;color:#8a5800;line-height:1.2}.customer-banner span{display:block;margin-top:4px;font-size:11px;color:#765a18}.customer-meta{display:none;margin:8px 20px 0;font-size:10.5px;color:#667085;font-weight:650}
+.calc-modal.customer-view .customer-banner,.calc-modal.customer-view .customer-meta{display:block}.calc-modal.customer-view .calc-grid,.calc-modal.customer-view .calc-error,.calc-modal.customer-view .calc-hint,.calc-modal.customer-view .calc-statusline,.calc-modal.customer-view .price-case .breakdown,.calc-modal.customer-view .calc-summary .calc-result:nth-child(3){display:none!important}.calc-modal.customer-view .calc-summary{grid-template-columns:1fr 1.35fr;margin-top:10px}.calc-modal.customer-view .calc-summary .calc-result:nth-child(2){display:none!important}.calc-modal.customer-view .calc-summary .calc-result:first-child b{font-size:18px}.customer-price-line{display:none}.calc-modal.customer-view .customer-price-line{display:block;font-size:18px;font-weight:850;color:#172033;margin-top:3px}.calc-modal.customer-view .customer-price-line small{font-size:11px;color:#667085;font-weight:700;margin-left:6px}.calc-modal.customer-view .calc-body{padding-top:10px}.calc-modal.customer-view .calc-preview-wrap{margin-top:6px;padding-top:8px}.calc-modal.customer-view .calc-head p{display:none}.calc-modal.customer-view .price-case{padding:13px 14px}.calc-modal.customer-view .price-case .deadline{margin-bottom:6px}.calc-modal.customer-view .price-case .promo{font-size:10.5px;padding:5px 8px}.calc-modal.customer-view .big-price{font-size:28px}.calc-modal.customer-view .mini-day{min-height:58px}.calc-modal.customer-view .mini-lesson{font-size:8px}.calc-modal.customer-view .mini-lesson .lesson-time{font-size:7px}
+
+.customer-actions{display:none;margin:9px 20px 0;gap:7px;flex-wrap:wrap}.customer-action-btn{border:1px solid #98a2b3;background:#fff;color:#344054;border-radius:9px;padding:7px 10px;font-size:10.5px;font-weight:800;cursor:pointer}.customer-action-btn.primary{background:#3448c5;color:#fff;border-color:#3448c5}.customer-message{display:none;margin:11px 0 0;border:1px solid var(--line);border-radius:13px;background:#f8fafc;padding:12px}.customer-message-head{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:8px}.customer-message h3{font-size:13px;margin:0}.customer-message pre{white-space:pre-wrap;margin:0;font-family:inherit;font-size:11px;line-height:1.55;color:#344054;background:#fff;border:1px solid #e4e7ec;border-radius:10px;padding:11px;max-height:280px;overflow:auto}.calc-modal.customer-view .customer-actions{display:flex}.calc-modal.customer-view .customer-message{display:block}.calc-modal.customer-view .calc-head h2{font-size:18px}.calc-modal.customer-view .calc-preview-head h3{font-size:14px}.calc-modal.customer-view .calc-preview-head p{font-size:10px}.calc-modal.customer-view .calc-preview-count{font-size:10px}.calc-modal.customer-view .mini-weekdays span{font-size:8px}.calc-modal.customer-view .calc-result span{font-size:9px}.calc-modal.customer-view .calc-result b{font-size:18px}
+
+@media(max-width:760px){.calc-pricing{grid-template-columns:1fr}.calc-summary{grid-template-columns:1fr 1fr 1fr}.mini-day{min-height:60px;padding:3px}.mini-lesson{font-size:7.5px;padding:3px}.mini-lesson .lesson-time{font-size:6.8px}.calc-modal{border-radius:14px}.calc-body,.calc-head{padding-left:12px;padding-right:12px}}
+@media(max-width:620px){.calc-grid{grid-template-columns:1fr}.calc-field.full{grid-column:auto}.calc-summary{grid-template-columns:1fr 1fr}.calc-summary .calc-result:last-child{grid-column:1/-1}.export-controls{margin-left:0;width:100%;flex-wrap:wrap}.export-controls select{flex:1}.calc-btn{flex:1}}
+
 </style>
 </head>
 <body>
@@ -58,6 +81,7 @@ header h1{font-size:20px;margin:0 0 4px} header p{margin:0;color:#cfd4dc;font-si
       </div>
     </div>
     <label class="toggle" id="efcToggleWrap" hidden><input type="checkbox" id="efcToggle"> Add EFC</label>
+    <button class="calc-btn" id="calcOpen" type="button">Course Price</button>
     <div class="export-controls">
       <select id="exportFormat" aria-label="Export format"><option value="svg">Image (SVG - reliable)</option><option value="pdf">PDF</option></select>
       <button class="export-btn" id="exportBtn" type="button">Export</button>
@@ -69,6 +93,96 @@ header h1{font-size:20px;margin:0 0 4px} header p{margin:0;color:#cfd4dc;font-si
   <div class="summary" id="summary"></div>
   <div class="calendar" id="calendar"></div>
 </div>
+
+<div class="calc-overlay" id="calcOverlay" hidden>
+  <section class="calc-modal" role="dialog" aria-modal="true" aria-labelledby="calcTitle">
+    <div class="calc-head">
+      <div><h2 id="calcTitle">Course Price Calculator</h2><p id="calcHeadHelp">Choose a pathway and lessons, then fine-tune individual periods from the calendar.</p></div>
+      <label class="customer-toggle" for="calcCustomer"><input id="calcCustomer" type="checkbox"> <span id="calcCustomerToggleText">สำหรับลูกค้า</span></label>
+      <button class="calc-close" id="calcClose" type="button" aria-label="Close calculator">×</button>
+    </div>
+    <div class="customer-banner" id="calcCustomerBanner"><strong id="calcCustomerHeadline">Early-payment privilege</strong><span id="calcCustomerSubline">Pay before the Early Bird deadline to unlock the best EFC offer.</span></div>
+    <div class="customer-meta" id="calcCustomerMeta"></div>
+    <div class="customer-actions" id="calcCustomerActions"><button class="customer-action-btn primary" id="calcCopyImage" type="button">คัดลอกรูป PNG</button><button class="customer-action-btn" id="calcDownloadImage" type="button">ดาวน์โหลด PNG</button></div>
+    <div class="calc-body">
+      <div class="calc-grid">
+        <div class="calc-field full">
+          <label for="calcPathway">Student pathway</label>
+          <select id="calcPathway"></select>
+        </div>
+        <div class="calc-field full">
+          <label>Subjects</label>
+          <div class="subject-picks" id="calcSubjects"></div>
+        </div>
+        <div class="calc-field">
+          <label for="calcStart">Start date</label>
+          <input id="calcStart" type="date" min="2026-10-01" max="2026-10-31" value="2026-10-01">
+        </div>
+        <div class="calc-field">
+          <label for="calcEnd">Finish date</label>
+          <input id="calcEnd" type="date" min="2026-10-01" max="2026-10-31" value="2026-10-31">
+        </div>
+        <div class="calc-field full">
+          <label class="calc-toggle" for="calcEfc">
+            <input id="calcEfc" type="checkbox">
+            <span><strong>Add EFC</strong><small id="calcEfcHelp">Non-clashing EFC periods are priced separately at ฿120/hour. Early-payment privilege applies before 29 September.</small></span>
+          </label>
+        </div>
+        <div class="calc-field full">
+          <label for="calcRate">Automatic rate per hour (THB)</label>
+          <input id="calcRate" type="number" min="0" step="1" inputmode="decimal" readonly aria-readonly="true">
+          <small id="calcRateHelp" style="display:block;margin-top:6px;color:#667085;line-height:1.35">Rate updates automatically from the pathway and number of selected core periods. EFC remains ฿120/hour.</small>
+        </div>
+        <div class="calc-field full">
+          <label for="calcEarlyBirdPct">Early Bird discount (%)</label>
+          <input id="calcEarlyBirdPct" type="number" min="0" max="100" step="1" inputmode="decimal" value="25">
+          <small id="calcEarlyBirdHelp" style="display:block;margin-top:6px;color:#667085;line-height:1.35">Manual promotional discount for customers paying before 29 September. Default 25%.</small>
+        </div>
+        <div class="calc-field full">
+          <label for="calcEarlyBirdDeadline">Early Bird deadline</label>
+          <input id="calcEarlyBirdDeadline" type="date" value="2026-09-29">
+          <small id="calcDeadlineHelp" style="display:block;margin-top:6px;color:#667085;line-height:1.35">Customers paying before this date receive the Early Bird promotion. Default: 29 September 2026.</small>
+        </div>
+      </div>
+      <div class="calc-error" id="calcError"></div>
+      <div class="calc-preview-wrap">
+        <div class="calc-preview-head">
+          <div><h3 id="calcPreviewTitle">Period selection</h3><p id="calcPreviewHelp">Tap any lesson to include or exclude it from the quotation.</p></div>
+          <span class="calc-preview-count" id="calcPreviewCount">0 selected</span>
+        </div>
+        <div class="mini-weekdays" id="calcWeekdays"><span>MON</span><span>TUE</span><span>WED</span><span>THU</span><span>FRI</span><span>SAT</span><span>SUN</span></div>
+        <div class="mini-calendar" id="calcCalendar"></div>
+        <div class="calc-hint">Tap any lesson to include or exclude it. EFC is shown separately and only appears when it does not clash with the selected core subjects.</div>
+      </div>
+      <div aria-live="polite">
+        <div class="calc-summary">
+          <div class="calc-result"><span id="calcPeriodsLabel">Selected periods</span><b id="calcPeriods">0</b><div class="customer-price-line" id="calcCustomerPeriodLine">0 คาบ (0 ชม. เรียน)</div></div>
+          <div class="calc-result"><span id="calcHoursLabel">Total hours</span><b id="calcHours">0</b></div>
+          <div class="calc-result"><span id="calcGrossLabel">Standard basket value</span><b id="calcGross">฿0</b><div class="customer-price-line" id="calcCustomerPriceLine">ราคาปกติ ฿0 → ฿0 <small>ลด 25%</small></div></div>
+        </div>
+        <div class="calc-pricing">
+          <section class="price-case early">
+            <h4 id="calcEarlyTitle">Pay before 29 September</h4>
+            <div class="deadline" id="calcEarlyDeadline">Early-payment EFC privilege</div>
+            <div class="big-price" id="calcEarlyPrice">฿0</div>
+            <div class="breakdown" id="calcEarlyBreakdown">Enter a rate to calculate.</div>
+            <span class="promo" id="calcEarlyPromo">Early EFC offer</span>
+          </section>
+          <section class="price-case">
+            <h4 id="calcLateTitle">Pay from 29 September</h4>
+            <div class="deadline" id="calcLateDeadline">Standard EFC pricing</div>
+            <div class="big-price" id="calcLatePrice">฿0</div>
+            <div class="breakdown" id="calcLateBreakdown">Enter a rate to calculate.</div>
+            <span class="promo" id="calcLatePromo">Standard pricing</span>
+          </section>
+        </div>
+        <div class="calc-statusline" id="calcNote">Regular-course rate is selected automatically from the pathway and number of selected core periods. EFC is always ฿120/hour.</div>
+        <section class="customer-message" id="calcCustomerMessage"><div class="customer-message-head"><h3>ข้อความสำหรับส่งผู้ปกครอง</h3><button class="customer-action-btn" id="calcCopyText" type="button">คัดลอกข้อความ</button></div><pre id="calcParentText"></pre></section>
+      </div>
+    </div>
+  </section>
+</div>
+
 <script>
 const periods={1:'09:00-10:30',2:'10:40-12:10',3:'13:00-14:30',4:'14:40-16:10',5:'16:20-17:50'};
 const teacherNames={Tuang:'Kru Tuang',Lek:'Kru Lek',Boom:'Kru Boom',Baipak:'Kru Baipak',Base:'Kru Base'};
@@ -296,6 +410,283 @@ function renderChecks(){
  checksEl=document.getElementById('checks');
  checksEl.innerHTML=checks.map(([n,ok,msg])=>`<div class="check"><b class="${ok?'ok':'warn'}">${ok?'PASS':'CHECK'} - ${n}</b><br><span>${msg}</span></div>`).join('');
 }
+
+// ----- Interactive course price calculator (timetable data remains V8) -----
+const calculatorSubjectNames={Math:'Math',Science:'Science',Physics:'Physics',Chemistry:'Chemistry',Biology:'Biology',English:'English'};
+const EFC_RATE=120;
+const AUTO_RATE_TIERS={
+  P1_4:[106,100,96],
+  P5:[111,106,100],
+  P6:[122,111,104],
+  M1:[133,117,107],
+  M2:[144,122,111],
+  M3_6:[156,128,115]
+};
+function pathwayRateBand(pathway){
+  if(/^P[1-4](?:\b|\s|-)/.test(pathway)||pathway==='P4') return 'P1_4';
+  if(/^P5(?:\b|\s|-)/.test(pathway)) return 'P5';
+  if(/^P6(?:\b|\s|-)/.test(pathway)) return 'P6';
+  if(/^M1(?:\b|\s|-)/.test(pathway)) return 'M1';
+  if(/^M2(?:\b|\s|-)/.test(pathway)) return 'M2';
+  if(/^M(?:3|4e?|5|6)(?:\b|\s|-)/i.test(pathway)) return 'M3_6';
+  return 'M3_6';
+}
+function automaticHourlyRate(pathway,corePeriods){
+  if(corePeriods<=0) return 0;
+  const tier=corePeriods<=12?0:(corePeriods<=18?1:2);
+  return AUTO_RATE_TIERS[pathwayRateBand(pathway)][tier];
+}
+function autoRateDescription(pathway,corePeriods,rate){
+  if(!corePeriods) return 'เลือกคาบเรียนหลักเพื่อคำนวณเรตอัตโนมัติ';
+  const band=pathwayRateBand(pathway);
+  const bandLabel={P1_4:'ป.1–4',P5:'ป.5',P6:'ป.6',M1:'ม.1',M2:'ม.2',M3_6:'ม.3–6'}[band];
+  const qty=corePeriods<=12?'ไม่เกิน 12 คาบ':(corePeriods<=18?'13–18 คาบ':'มากกว่า 18 คาบ');
+  return `${bandLabel} · ${corePeriods} คาบหลัก · ${qty} → ${rate} บาท/ชม.`;
+}
+const calcModal=document.querySelector('.calc-modal');
+let calcPreviewEvents=[];
+let calcSelectedKeys=new Set();
+function calculatorCourseMap(pathway){
+ const courses=groups[pathway]||[];
+ const map={};
+ courses.forEach(c=>{
+   if(/^M[PM]/.test(c)) map.Math=c;
+   else if(/^S[PM]/.test(c)) map.Science=c;
+   else if(/^PM/.test(c)) map.Physics=c;
+   else if(/^CM/.test(c)) map.Chemistry=c;
+   else if(/^BM/.test(c)) map.Biology=c;
+   else if(/^E(P4|PF|PA|MF|MA)$/.test(c)) map.English=c;
+ });
+ return map;
+}
+function calcEventKey(e){return `${e.date}|${e.period}|${e.course}`}
+function formatTHB(v){
+ return new Intl.NumberFormat('en-US',{style:'currency',currency:'THB',minimumFractionDigits:Number.isInteger(v)?0:2,maximumFractionDigits:2}).format(v).replace('THB','฿').replace(/\s/g,'');
+}
+function calcSelectedCourses(){return [...document.querySelectorAll('#calcSubjects input:checked')].map(x=>x.value)}
+function calculatorCourseLabel(course){
+ const labels={
+  MP4:'P4 Math',SP4:'P4 Science',EP4:'English',
+  MP5:'P5 Math',SP5:'P5 Science',EPF:'English (F)',EPA:'English (A)',
+  MP6:'P6 Math',SP6:'P6 Science',
+  MM2:'M2 Math',SM2:'M2 Science',EMF:'English (F)',EMA:'English (A)',
+  MM4e:'M4e Math',PM4e:'M4e Physics',CM4e:'M4e Chemistry',BM4e:'M4e Biology',
+  MM4:'M4 Math',PM4:'M4 Physics',CM4:'M4 Chemistry',BM4:'M4 Biology',
+  MM5:'M5 Math',PM5:'M5 Physics',CM5:'M5 Chemistry',BM5:'M5 Biology',EFC:'EFC'
+ };
+ return labels[course]||course;
+}
+function renderCalcSubjects(){
+ const map=calculatorCourseMap(calcPathway.value);
+ calcSubjects.innerHTML=Object.entries(map).map(([subject,course])=>`<label class="subject-chip"><input type="checkbox" value="${course}" checked><span>${calculatorCourseLabel(course)}</span></label>`).join('');
+ calcSubjects.querySelectorAll('input').forEach(x=>x.addEventListener('change',()=>rebuildCalcPreview(true)));
+ rebuildCalcPreview(true);
+}
+function calcValidRange(){
+ const start=calcStart.value,end=calcEnd.value;
+ calcError.classList.remove('show');calcError.textContent='';
+ if(start&&end&&start>end){calcError.textContent='Finish date must be on or after the start date.';calcError.classList.add('show');return false}
+ return true;
+}
+function rebuildCalcPreview(resetSelection=true){
+ if(!calcValidRange()){calcPreviewEvents=[];calcSelectedKeys.clear();renderCalcCalendar();calculateCoursePrice();return}
+ const start=calcStart.value,end=calcEnd.value;
+ const selectedCourses=calcSelectedCourses();
+ const core=data.filter(e=>selectedCourses.includes(e.course)&&(!start||e.date>=start)&&(!end||e.date<=end));
+ let preview=[...core];
+ if(calcEfc.checked){
+   const occupied=new Set(core.map(e=>`${e.date}|${e.period}`));
+   const efc=data.filter(e=>e.course==='EFC'&&(!start||e.date>=start)&&(!end||e.date<=end)&&!occupied.has(`${e.date}|${e.period}`));
+   preview.push(...efc);
+ }
+ preview.sort((a,b)=>a.date.localeCompare(b.date)||a.period-b.period||a.course.localeCompare(b.course));
+ calcPreviewEvents=preview;
+ if(resetSelection) calcSelectedKeys=new Set(preview.map(calcEventKey));
+ else {
+   const valid=new Set(preview.map(calcEventKey));
+   calcSelectedKeys=new Set([...calcSelectedKeys].filter(k=>valid.has(k)));
+ }
+ renderCalcCalendar();
+ calculateCoursePrice();
+}
+function renderCalcCalendar(){
+ const start=calcStart.value,end=calcEnd.value;
+ const first=new Date(2026,9,1),offset=(first.getDay()+6)%7;
+ const cells=[];for(let i=0;i<offset;i++)cells.push(null);for(let d=1;d<=31;d++)cells.push(d);while(cells.length%7)cells.push(null);
+ calcCalendar.innerHTML=cells.map(d=>{
+   if(!d)return '<div class="mini-day out-range"></div>';
+   const ds=`2026-10-${String(d).padStart(2,'0')}`;
+   const inRange=(!start||ds>=start)&&(!end||ds<=end);
+   const ev=calcPreviewEvents.filter(e=>e.date===ds);
+   const buttons=ev.map(e=>{const key=calcEventKey(e),on=calcSelectedKeys.has(key),label=calculatorCourseLabel(e.course);return `<button type="button" class="mini-lesson${e.course==='EFC'?' efc':''}${on?'':' off'}" data-key="${key}" title="${label} · ${ds} · T${e.period} · ${periods[e.period]}"><span class="lesson-name">${label}</span><span class="lesson-time">${periods[e.period]}</span></button>`}).join('');
+   return `<div class="mini-day${inRange?'':' out-range'}"><div class="mini-date"><span>${d}</span><span>${fmtDay(ds)}</span></div><div class="mini-events">${buttons||(inRange?'<span class="mini-empty">—</span>':'')}</div></div>`;
+ }).join('');
+ calcCalendar.querySelectorAll('.mini-lesson').forEach(btn=>btn.addEventListener('click',()=>{
+   const key=btn.dataset.key;
+   if(calcSelectedKeys.has(key))calcSelectedKeys.delete(key);else calcSelectedKeys.add(key);
+   btn.classList.toggle('off',!calcSelectedKeys.has(key));
+   calculateCoursePrice();
+ }));
+}
+function fullCorePackageSelected(){
+ const pathway=calcPathway.value;
+ const allCourses=Object.values(calculatorCourseMap(pathway));
+ const chosen=calcSelectedCourses();
+ if(!allCourses.length||chosen.length!==allCourses.length||!allCourses.every(c=>chosen.includes(c)))return false;
+ const official=data.filter(e=>allCourses.includes(e.course));
+ return official.length>0&&official.every(e=>calcSelectedKeys.has(calcEventKey(e)));
+}
+function allAvailableEfcSelected(){
+ const efc=calcPreviewEvents.filter(e=>e.course==='EFC');
+ return calcEfc.checked&&efc.length>0&&efc.every(e=>calcSelectedKeys.has(calcEventKey(e)));
+}
+
+function thaiPathwayLabel(pathway){
+ const map={'P4':'ป.4','P5 - EPF':'ป.5','P5 - EPA':'ป.5','P6 - EPF':'ป.6','P6 - EPA':'ป.6','M2 - EMF':'ม.2','M2 - EMA':'ม.2','M4e - EMF':'เตรียมสอบเข้า ม.4','M4e - EMA':'เตรียมสอบเข้า ม.4','M4 - EMF':'ม.4','M4 - EMA':'ม.4','M5':'ม.5'};return map[pathway]||pathway;
+}
+function thaiSubjectShort(course){
+ if(course==='EFC')return 'EFC'; if(course.startsWith('MP')||course.startsWith('MM'))return 'คณิตศาสตร์'; if(course.startsWith('SP')||course.startsWith('SM'))return 'วิทยาศาสตร์'; if(course.startsWith('PM'))return 'ฟิสิกส์'; if(course.startsWith('CM'))return 'เคมี'; if(course.startsWith('BM'))return 'ชีววิทยา'; if(['EP4','EPF','EMF'].includes(course))return 'อังกฤษ (Foundation)'; if(['EPA','EMA'].includes(course))return 'อังกฤษ (Advanced)'; return course;
+}
+function thaiConceptLine(course,pathway){
+ const lvl=thaiPathwayLabel(pathway);
+ if(course.startsWith('MP')){if(course==='MP5')return '- คณิตศาสตร์ เก็บเนื้อหาเรขาคณิต ป.5 และ ป.6 พร้อมโจทย์ประยุกต์และแนวข้อสอบแข่งขัน';if(course==='MP6')return '- คณิตศาสตร์ ทบทวนและเก็บเนื้อหา ป.6 พร้อมโจทย์ประยุกต์และเตรียมสอบเข้า ม.1';return `- คณิตศาสตร์ ทบทวนและต่อยอดเนื้อหา ${lvl} พร้อมปูพื้นฐานระดับถัดไปและโจทย์ประยุกต์`;}
+ if(course.startsWith('SP')){if(course==='SP5')return '- วิทยาศาสตร์ เก็บเนื้อหา ป.5 เทอม 2 และ ป.6 เทอม 1 พร้อมแนวข้อสอบแข่งขัน';if(course==='SP6')return '- วิทยาศาสตร์ ทบทวนและเก็บเนื้อหา ป.6 พร้อมเชื่อมโยงโจทย์วิเคราะห์และเตรียมสอบเข้า ม.1';return `- วิทยาศาสตร์ ทบทวนและต่อยอดเนื้อหา ${lvl} เน้นความเข้าใจและการประยุกต์โจทย์`;}
+ if(course.startsWith('MM'))return `- คณิตศาสตร์ ${lvl} เน้นแก่นเนื้อหา การคิดวิเคราะห์ และโจทย์แนวแข่งขัน/สอบเข้า`;
+ if(course.startsWith('SM'))return `- วิทยาศาสตร์ ${lvl} เน้นแก่นเนื้อหา การคิดวิเคราะห์ และโจทย์แนวแข่งขัน/สอบเข้า`;
+ if(course.startsWith('PM'))return `- ฟิสิกส์ ${lvl} ปูพื้นฐานแนวคิดสำคัญ ฝึกวิเคราะห์โจทย์ และเชื่อมโยงข้อสอบแข่งขัน`;
+ if(course.startsWith('CM'))return `- เคมี ${lvl} เก็บแนวคิดสำคัญ ฝึกคำนวณและวิเคราะห์โจทย์ พร้อมแนวข้อสอบแข่งขัน`;
+ if(course.startsWith('BM'))return `- ชีววิทยา ${lvl} สรุปเนื้อหาสำคัญ เชื่อมโยงความเข้าใจ และฝึกโจทย์แนวแข่งขัน`;
+ if(['EPF','EMF','EP4'].includes(course))return '- อังกฤษ เรียนตามหมวดสำคัญและพาทำแนวข้อสอบระดับ Foundation เพื่อสร้างพื้นฐานและเตรียมพร้อมสู่สนามแข่งขัน';
+ if(['EPA','EMA'].includes(course))return '- อังกฤษ เรียนตามหมวดสำคัญและพาทำแนวข้อสอบระดับ Advanced เพื่อยกระดับทักษะและเตรียมพร้อมสู่สนามแข่งขัน'; return '';
+}
+function thaiDateRange(selectedEvents){if(!selectedEvents.length)return '1-31 ตุลาคม 2026';const dates=selectedEvents.map(e=>e.date).sort();return `${Number(dates[0].slice(8,10))}-${Number(dates[dates.length-1].slice(8,10))} ตุลาคม 2026`;}
+function earlyBirdDeadlineValue(){return document.getElementById('calcEarlyBirdDeadline')?.value||'2026-09-29';}
+function deadlineParts(){const v=earlyBirdDeadlineValue(),m=v.match(/^(\d{4})-(\d{2})-(\d{2})$/);return m?{y:Number(m[1]),m:Number(m[2]),d:Number(m[3])}:{y:2026,m:9,d:29};}
+function deadlineThaiShort(){const p=deadlineParts(),months=['','ม.ค.','ก.พ.','มี.ค.','เม.ย.','พ.ค.','มิ.ย.','ก.ค.','ส.ค.','ก.ย.','ต.ค.','พ.ย.','ธ.ค.'];return `${p.d} ${months[p.m]} ${p.y}`;}
+function deadlineThaiLong(){const p=deadlineParts(),months=['','มกราคม','กุมภาพันธ์','มีนาคม','เมษายน','พฤษภาคม','มิถุนายน','กรกฎาคม','สิงหาคม','กันยายน','ตุลาคม','พฤศจิกายน','ธันวาคม'];return `${p.d} ${months[p.m]} ${p.y}`;}
+function deadlineEnglish(){const p=deadlineParts(),months=['','January','February','March','April','May','June','July','August','September','October','November','December'];return `${p.d} ${months[p.m]} ${p.y}`;}
+function refreshDeadlineStaticText(){
+ const en=deadlineEnglish(),th=deadlineThaiLong();
+ const efcHelp=document.getElementById('calcEfcHelp'); if(efcHelp)efcHelp.textContent=`Non-clashing EFC periods are priced separately at ฿120/hour. Early-payment privilege applies before ${en}.`;
+ const ebHelp=document.getElementById('calcEarlyBirdHelp'); if(ebHelp)ebHelp.textContent=`Manual promotional discount for customers paying before ${en}. Default discount 25%.`;
+ const dlHelp=document.getElementById('calcDeadlineHelp'); if(dlHelp)dlHelp.textContent=`Customers paying before this date receive the Early Bird promotion. Current deadline: ${en}.`;
+ if(calcCustomer?.checked){document.getElementById('calcEarlyTitle').textContent=`ชำระก่อน ${th}`;document.getElementById('calcLateTitle').textContent=`ชำระตั้งแต่ ${th}`;}else{document.getElementById('calcEarlyTitle').textContent=`Pay before ${en}`;document.getElementById('calcLateTitle').textContent=`Pay from ${en}`;}
+}
+function buildParentMessage(selectedEvents,coreGross,efcGross,gross,earlyFinal,earlyEfcDiscount,fullCore,rate,earlyPct){
+ const core=selectedEvents.filter(e=>e.course!=='EFC'),uniqueCourses=[...new Set(core.map(e=>e.course))],subjectNames=[...new Set(uniqueCourses.map(thaiSubjectShort))],hours=selectedEvents.length*1.5,countBy={};core.forEach(e=>countBy[e.course]=(countBy[e.course]||0)+1);
+ const lines=[`คอร์สปิดเทอม ${thaiPathwayLabel(calcPathway.value)} @Infinia Academy`,`- ${thaiDateRange(selectedEvents)}`];
+ if(subjectNames.length)lines.push(`- เรียน ${subjectNames.length} วิชา ${subjectNames.join(' / ')}`);uniqueCourses.forEach(c=>{const line=thaiConceptLine(c,calcPathway.value);if(line)lines.push(line)});if(uniqueCourses.length)lines.push('- แต่ละวิชา พร้อมฝึกข้อสอบแนวแข่งขันและข้อสอบเข้า เช่น หอวัง สามเสน และสนามสอบใกล้เคียง');
+ if(uniqueCourses.length){const detail=uniqueCourses.map(c=>`${thaiSubjectShort(c)} ${countBy[c]} คาบ`).join(', ');lines.push(`- จำนวนเรียนตามที่เลือก: ${detail} รวม ${core.length} คาบ`);} if(selectedEvents.some(e=>e.course==='EFC')){const n=selectedEvents.filter(e=>e.course==='EFC').length;lines.push(`- EFC เพิ่มเติม ${n} คาบ เน้นการสื่อสารภาษาอังกฤษและการใช้ภาษาในสถานการณ์จริง`);}
+ lines.push(`- รวมเรียนทั้งหมด ${Number.isInteger(hours)?hours:hours.toFixed(1)} ชม. (${selectedEvents.length} คาบ คาบละ 1.5 ชม.)`);lines.push('- มีการทดสอบประเมินผลทุกสัปดาห์ พร้อมรายงานผลและ feedback รายบุคคลเชิงลึก');
+ if(gross>0){const rateText=rate>0?` (อัตราวิชาหลัก ${formatTHB(rate)}/ชม.)`:'';lines.push('');lines.push(`- พิเศษ Early Bird ลด ${earlyPct}% ชำระก่อน ${deadlineThaiShort()} เหลือ ${formatTHB(earlyFinal)} จากราคาปกติ ${formatTHB(gross)}${rateText}`);if(efcGross>0&&earlyEfcDiscount>0)lines.push(earlyEfcDiscount>=efcGross?`- สิทธิพิเศษ: EFC ฟรี มูลค่า ${formatTHB(efcGross)}`:`- สิทธิพิเศษ: ลดค่า EFC เพิ่ม ${formatTHB(earlyEfcDiscount)}`);else if(fullCore)lines.push('- สิทธิพิเศษ: แพ็กเกจครบทุกวิชาและทุกคาบ ลด 10%');}
+ return lines.join('\n');
+}
+function updateCustomerLanguage(on){
+ const help=document.getElementById('calcHeadHelp');if(on){calcTitle.textContent='สรุปคอร์สและราคา';if(help)help.textContent='';document.getElementById('calcPreviewTitle').textContent='ตารางเรียนที่เลือก';document.getElementById('calcPreviewHelp').textContent='แตะคาบเรียนเพื่อเลือกหรือยกเลิกได้';document.getElementById('calcWeekdays').innerHTML='<span>จ.</span><span>อ.</span><span>พ.</span><span>พฤ.</span><span>ศ.</span><span>ส.</span><span>อา.</span>';document.getElementById('calcPeriodsLabel').textContent='จำนวนเรียนทั้งหมด';document.getElementById('calcHoursLabel').textContent='ชั่วโมงเรียนรวม';document.getElementById('calcGrossLabel').textContent='ราคา Early Bird';document.getElementById('calcEarlyTitle').textContent=`ชำระก่อน ${deadlineThaiLong()}`;document.getElementById('calcEarlyDeadline').textContent='รับสิทธิพิเศษ EFC';document.getElementById('calcLateTitle').textContent=`ชำระตั้งแต่ ${deadlineThaiLong()}`;document.getElementById('calcLateDeadline').textContent='ราคาปกติตามเงื่อนไข';}
+ else{calcTitle.textContent='Course Price Calculator';if(help)help.textContent='Choose a pathway and lessons, then fine-tune individual periods from the calendar.';document.getElementById('calcPreviewTitle').textContent='Period selection';document.getElementById('calcPreviewHelp').textContent='Tap any lesson to include or exclude it from the quotation.';document.getElementById('calcWeekdays').innerHTML='<span>MON</span><span>TUE</span><span>WED</span><span>THU</span><span>FRI</span><span>SAT</span><span>SUN</span>';document.getElementById('calcPeriodsLabel').textContent='Selected periods';document.getElementById('calcHoursLabel').textContent='Total hours';document.getElementById('calcGrossLabel').textContent='Standard basket value';document.getElementById('calcEarlyTitle').textContent=`Pay before ${deadlineEnglish()}`;document.getElementById('calcEarlyDeadline').textContent='Early-payment EFC privilege';document.getElementById('calcLateTitle').textContent=`Pay from ${deadlineEnglish()}`;document.getElementById('calcLateDeadline').textContent='Standard EFC pricing';}
+}
+function drawRounded(ctx,x,y,w,h,r,fill,stroke){ctx.beginPath();if(ctx.roundRect)ctx.roundRect(x,y,w,h,r);else ctx.rect(x,y,w,h);if(fill){ctx.fillStyle=fill;ctx.fill()}if(stroke){ctx.strokeStyle=stroke;ctx.lineWidth=2;ctx.stroke()}}
+function renderCustomerQuoteCanvas(){
+ const W=1800,H=1400,canvas=document.createElement('canvas');canvas.width=W;canvas.height=H;const ctx=canvas.getContext('2d');ctx.fillStyle='#f6f7fb';ctx.fillRect(0,0,W,H);ctx.fillStyle='#101828';ctx.fillRect(0,0,W,120);ctx.fillStyle='#fff';ctx.font='700 34px sans-serif';ctx.fillText('Infinia Academy · ตารางคอร์สเดือนตุลาคม 2026',55,54);ctx.font='500 21px sans-serif';ctx.fillStyle='#d0d5dd';ctx.fillText(thaiPathwayLabel(calcPathway.value),55,88);
+ const selected=calcPreviewEvents.filter(e=>calcSelectedKeys.has(calcEventKey(e))),earlyPrice=document.getElementById('calcEarlyPrice').textContent,headline=calcCustomerHeadline.textContent,sub=calcCustomerSubline.textContent;drawRounded(ctx,55,145,1690,92,18,'#fff9e8','#f3c15f');ctx.fillStyle='#8a5800';ctx.font='800 30px sans-serif';ctx.fillText(headline,80,183);ctx.font='500 18px sans-serif';ctx.fillText(sub,80,215);ctx.fillStyle='#475467';ctx.font='650 18px sans-serif';ctx.fillText(calcCustomerMeta.textContent,60,270);
+ const x0=55,y0=325,gap=10,col=(1690-gap*6)/7,rowH=166,weekdays=['จ.','อ.','พ.','พฤ.','ศ.','ส.','อา.'];ctx.font='800 16px sans-serif';ctx.fillStyle='#667085';weekdays.forEach((d,i)=>ctx.fillText(d,x0+i*(col+gap)+8,y0-18));const first=new Date(2026,9,1),offset=(first.getDay()+6)%7,cells=[];for(let i=0;i<offset;i++)cells.push(null);for(let d=1;d<=31;d++)cells.push(d);while(cells.length<35)cells.push(null);
+ cells.forEach((d,idx)=>{const r=Math.floor(idx/7),c=idx%7,x=x0+c*(col+gap),y=y0+r*(rowH+gap);drawRounded(ctx,x,y,col,rowH,12,'#fff','#dfe3ea');if(!d)return;ctx.fillStyle='#344054';ctx.font='800 16px sans-serif';ctx.fillText(String(d),x+10,y+23);const ds=`2026-10-${String(d).padStart(2,'0')}`,ev=selected.filter(e=>e.date===ds);let ey=y+34;ev.slice(0,5).forEach(e=>{const efc=e.course==='EFC';drawRounded(ctx,x+8,ey,col-16,23,6,efc?'#fff7df':'#eef0ff',efc?'#f5c66c':'#aeb8ff');ctx.fillStyle=efc?'#8a5800':'#2437a6';ctx.font='800 12px sans-serif';ctx.fillText(calculatorCourseLabel(e.course),x+14,ey+16);ctx.textAlign='right';ctx.font='650 11px sans-serif';ctx.fillText(periods[e.period],x+col-14,ey+16);ctx.textAlign='left';ey+=26;});});
+ const sy=1215;const pct=Math.max(0,Math.min(100,Number(document.getElementById('calcEarlyBirdPct').value)||0));const grossText=document.getElementById('calcGross').textContent;drawRounded(ctx,55,sy,650,120,16,'#fff','#dfe3ea');drawRounded(ctx,725,sy,1020,120,16,'#fffdf6','#f3c15f');ctx.fillStyle='#667085';ctx.font='800 16px sans-serif';ctx.fillText('จำนวนเรียนทั้งหมด',80,sy+32);ctx.fillText('ราคา Early Bird',750,sy+32);ctx.fillStyle='#172033';ctx.font='850 31px sans-serif';ctx.fillText(`${document.getElementById('calcPeriods').textContent} คาบ (${document.getElementById('calcHours').textContent} ชม. เรียน)`,80,sy+80);ctx.font='750 24px sans-serif';ctx.fillStyle='#667085';ctx.fillText(`ราคาปกติ ${grossText}`,750,sy+75);ctx.fillStyle='#8a5800';ctx.font='850 31px sans-serif';ctx.fillText(`เหลือ ${earlyPrice}`,1110,sy+75);ctx.font='750 16px sans-serif';ctx.fillText(`ลด ${pct}%${document.getElementById('calcEarlyPromo').textContent.includes('EFC')?' + สิทธิพิเศษ EFC':''} · ชำระก่อน ${deadlineThaiShort()}`,1110,sy+103);ctx.fillStyle='#98a2b3';ctx.font='500 14px sans-serif';ctx.fillText('ภาพสรุปขนาดคงที่ 1800×1400 px',55,1380);return canvas;
+}
+async function copyCustomerQuotePng(){const canvas=renderCustomerQuoteCanvas(),blob=await new Promise(r=>canvas.toBlob(r,'image/png'));try{await navigator.clipboard.write([new ClipboardItem({'image/png':blob})]);const b=document.getElementById('calcCopyImage'),old=b.textContent;b.textContent='คัดลอกรูปแล้ว ✓';setTimeout(()=>b.textContent=old,1600)}catch(err){downloadCanvasPng(canvas);alert('เบราว์เซอร์ไม่อนุญาตให้คัดลอกรูปอัตโนมัติ จึงดาวน์โหลด PNG ให้แทน');}}
+function downloadCanvasPng(canvas=renderCustomerQuoteCanvas()){const a=document.createElement('a');a.href=canvas.toDataURL('image/png');a.download=`Infinia_Oct2026_${calcPathway.value.replace(/[^A-Za-z0-9]+/g,'_')}_quote.png`;a.click()}
+async function copyParentText(){const t=document.getElementById('calcParentText').textContent;try{await navigator.clipboard.writeText(t);const b=document.getElementById('calcCopyText'),old=b.textContent;b.textContent='คัดลอกแล้ว ✓';setTimeout(()=>b.textContent=old,1400)}catch(e){const ta=document.createElement('textarea');ta.value=t;document.body.appendChild(ta);ta.select();document.execCommand('copy');ta.remove();}}
+
+function calculateCoursePrice(){
+ refreshDeadlineStaticText();
+ const selectedEvents=calcPreviewEvents.filter(e=>calcSelectedKeys.has(calcEventKey(e)));
+ const coreEvents=selectedEvents.filter(e=>e.course!=='EFC');
+ const efcSelected=selectedEvents.filter(e=>e.course==='EFC');
+ const efcAvailable=calcPreviewEvents.filter(e=>e.course==='EFC');
+ const count=selectedEvents.length;
+ const hours=count*1.5;
+ const rate=automaticHourlyRate(calcPathway.value,coreEvents.length);
+ calcRate.value=rate||'';
+ const rateHelp=document.getElementById('calcRateHelp');
+ if(rateHelp) rateHelp.textContent=autoRateDescription(calcPathway.value,coreEvents.length,rate)+(rate?' · EFC คงที่ 120 บาท/ชม.':'');
+ const coreGross=coreEvents.length*1.5*rate;
+ const efcGross=efcSelected.length*1.5*EFC_RATE;
+ const gross=coreGross+efcGross;
+ const fullCore=fullCorePackageSelected();
+ const fullEfc=allAvailableEfcSelected();
+ const coreDiscount=fullCore?coreGross*.10:(coreGross>=5000?coreGross*.05:0);
+ const coreFinal=coreGross-coreDiscount;
+ const earlyPct=Math.max(0,Math.min(100,Number(document.getElementById('calcEarlyBirdPct').value)||0));
+ const earlyCoreDiscount=coreGross*(earlyPct/100);
+ const earlyCoreFinal=Math.max(0,coreGross-earlyCoreDiscount);
+ // Early-payment case: EFC free when <=7 non-clashing periods are available; otherwise ฿1,260 off the selected EFC basket.
+ let earlyEfcDiscount=0,earlyPromo='No EFC selected';
+ if(calcEfc.checked&&efcSelected.length){
+   if(efcAvailable.length<=7){earlyEfcDiscount=efcGross;earlyPromo=`Free EFC · value ${formatTHB(efcGross)}`;}
+   else {earlyEfcDiscount=Math.min(1260,efcGross);earlyPromo=`EFC early-payment saving ${formatTHB(earlyEfcDiscount)}`;}
+ }
+ const earlyEfcFinal=Math.max(0,efcGross-earlyEfcDiscount);
+ const earlyFinal=earlyCoreFinal+earlyEfcFinal;
+ // From the selected Early Bird deadline: no early offer. Full available EFC selection gets 10% off EFC.
+ const lateEfcDiscount=fullEfc?efcGross*.10:0;
+ const lateEfcFinal=efcGross-lateEfcDiscount;
+ const lateFinal=coreFinal+lateEfcFinal;
+ calcPeriods.textContent=String(count);
+ calcHours.textContent=Number.isInteger(hours)?String(hours):hours.toFixed(1);
+ calcGross.textContent=formatTHB(gross);
+ calcPreviewCount.textContent=`${count} selected`;
+ calcEarlyPrice.textContent=formatTHB(earlyFinal);
+ calcLatePrice.textContent=formatTHB(lateFinal);
+ document.getElementById('calcCustomerPeriodLine').textContent=`${count} คาบ (${Number.isInteger(hours)?hours:hours.toFixed(1)} ชม. เรียน)`;
+ document.getElementById('calcCustomerPriceLine').innerHTML=`ราคาปกติ ${formatTHB(gross)} → ${formatTHB(earlyFinal)} <small>ลด ${earlyPct}%${earlyEfcDiscount>0?' + EFC':''}</small>`;
+ calcEarlyPromo.textContent=earlyPromo;
+ calcLatePromo.textContent=fullEfc?'Full EFC · 10% off':(calcEfc.checked&&efcSelected.length?'EFC standard price':'No EFC selected');
+ if(calcCustomer.checked){calcEarlyPromo.textContent=`Early Bird ลด ${earlyPct}%${earlyEfcDiscount>0?(earlyEfcDiscount>=efcGross&&efcGross>0?' + EFC ฟรี':' + สิทธิพิเศษ EFC'):''}`;calcLatePromo.textContent=fullEfc?'EFC ครบคอร์ส ลด 10%':(calcEfc.checked&&efcSelected.length?'ราคา EFC ปกติ':'');}
+ const coreLabel=fullCore?'Full pathway · 10% off':(coreDiscount?'Flexible selection · 5% off':'Standard course price');
+ calcEarlyBreakdown.textContent=`Early Bird ${earlyPct}% off core`+(calcEfc.checked&&efcSelected.length?`. EFC saving: ${formatTHB(earlyEfcDiscount)}.`:'');
+ calcLateBreakdown.textContent=calcEfc.checked&&efcSelected.length?`${coreLabel}. ${fullEfc?'Full EFC receives 10% off.':'EFC at standard price.'}`:coreLabel;
+ const earlySaving=(earlyCoreDiscount+earlyEfcDiscount);
+ if(calcEfc.checked&&efcSelected.length){
+   if(efcAvailable.length<=7){
+     calcCustomerHeadline.textContent=`Early Bird ลด ${earlyPct}% + EFC ฟรี`;
+     calcCustomerSubline.textContent=`ชำระก่อน ${deadlineThaiShort()} รับส่วนลด ${earlyPct}% และ EFC ฟรี มูลค่า ${formatTHB(efcGross)}`;
+   }else{
+     calcCustomerHeadline.textContent=`Early Bird ลด ${earlyPct}% + สิทธิพิเศษ EFC`;
+     calcCustomerSubline.textContent=`ชำระก่อน ${deadlineThaiShort()} รับส่วนลด ${earlyPct}% และลดค่า EFC เพิ่ม ${formatTHB(earlyEfcDiscount)}`;
+   }
+ }else{
+   calcCustomerHeadline.textContent=`Early Bird ลด ${earlyPct}%`;
+   calcCustomerSubline.textContent=`ชำระก่อน ${deadlineThaiShort()} รับส่วนลดพิเศษ ${earlyPct}% จากราคาคอร์ส`;
+ }
+ const metaSubjects=calcSelectedCourses().map(calculatorCourseLabel).join(' · ');
+ const startTxt=calcStart.value?calcStart.value.slice(8,10)+' Oct':'1 Oct';
+ const endTxt=calcEnd.value?calcEnd.value.slice(8,10)+' Oct':'31 Oct';
+ calcCustomerMeta.textContent=`${thaiPathwayLabel(calcPathway.value)}  •  ${startTxt.replace('Oct','ต.ค.')}–${endTxt.replace('Oct','ต.ค.')}  •  ${metaSubjects||'ยังไม่ได้เลือกวิชา'}${calcEfc.checked?'  •  + EFC':''}`;
+ document.getElementById('calcParentText').textContent=buildParentMessage(selectedEvents,coreGross,efcGross,gross,earlyFinal,earlyEfcDiscount,fullCore,rate,earlyPct);
+ if(!calcSelectedCourses().length)calcNote.textContent='Select at least one core subject to build a quotation.';
+ else if(!rate)calcNote.textContent='Select at least one core period to calculate the automatic hourly rate.';
+ else calcNote.textContent=`Automatic rate: ${formatTHB(rate)}/hour based on ${coreEvents.length} selected core periods. EFC remains ฿120/hour.`;
+}
+function openCalculator(){calcOverlay.hidden=false;document.body.style.overflow='hidden';setTimeout(()=>calcPathway.focus(),0)}
+function closeCalculator(){calcOverlay.hidden=true;document.body.style.overflow=''}
+function initCalculator(){
+ calcPathway.innerHTML=Object.keys(groups).map(g=>`<option value="${g}">${g}</option>`).join('');
+ calcPathway.value='P4';
+ calcPathway.addEventListener('change',renderCalcSubjects);
+ [calcStart,calcEnd].forEach(el=>el.addEventListener('input',()=>rebuildCalcPreview(true)));
+ calcEfc.addEventListener('change',()=>rebuildCalcPreview(true));
+ document.getElementById('calcEarlyBirdPct').addEventListener('input',calculateCoursePrice);
+ document.getElementById('calcEarlyBirdDeadline').addEventListener('input',calculateCoursePrice);
+ calcCustomer.addEventListener('change',()=>{calcModal.classList.toggle('customer-view',calcCustomer.checked);updateCustomerLanguage(calcCustomer.checked);calculateCoursePrice();});
+ document.getElementById('calcCopyImage').addEventListener('click',copyCustomerQuotePng);
+ document.getElementById('calcDownloadImage').addEventListener('click',()=>downloadCanvasPng());
+ document.getElementById('calcCopyText').addEventListener('click',copyParentText);
+ calcOpen.addEventListener('click',openCalculator);calcClose.addEventListener('click',closeCalculator);
+ calcOverlay.addEventListener('click',e=>{if(e.target===calcOverlay)closeCalculator()});
+ document.addEventListener('keydown',e=>{if(e.key==='Escape'&&!calcOverlay.hidden)closeCalculator()});
+ renderCalcSubjects();
+}
+
 function currentViewLabel(){
  if(view==='teacher') return `Teacher - ${teacherNames[teacherSelect.value]}`;
  if(view==='student') return `Student - ${selectedPathwayText()}${efcToggle.checked?' + EFC':''}`;
@@ -397,7 +788,7 @@ async function init(){
  document.addEventListener('click',e=>{if(!pathwayPicker.contains(e.target))togglePathwayMenu(false)});
  legend.innerHTML=Object.entries(teacherNames).map(([t,n])=>`<span class="pill ${t}">${n}</span>`).join('');
  document.querySelectorAll('.tab').forEach(b=>b.onclick=()=>{view=b.dataset.view;render()});
- teacherSelect.onchange=render;efcToggle.onchange=render;document.getElementById('exportBtn').onclick=exportCurrent;updatePathwayPicker();render();
+ teacherSelect.onchange=render;efcToggle.onchange=render;document.getElementById('exportBtn').onclick=exportCurrent;initCalculator();updatePathwayPicker();render();
  if('serviceWorker' in navigator)navigator.serviceWorker.register('sw.js').catch(()=>{});
 }
 init();
