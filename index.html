@@ -47,9 +47,9 @@ header h1{font-size:20px;margin:0 0 4px} header p{margin:0;color:#cfd4dc;font-si
 .calc-head h2{font-size:20px;margin:0 0 3px}.calc-head p{font-size:12px;color:var(--muted);margin:0}.calc-close{border:0;background:#f2f4f7;color:#475467;width:34px;height:34px;border-radius:10px;font-size:22px;line-height:1;cursor:pointer}
 .calc-body{padding:15px 20px 19px}.calc-grid{display:grid;grid-template-columns:1fr 1fr;gap:11px}.calc-field{display:flex;flex-direction:column;gap:5px}.calc-field.full{grid-column:1/-1}.calc-field label{font-size:12px;font-weight:750;color:#475467}.calc-field select,.calc-field input{width:100%;border:1px solid var(--line);background:#fff;border-radius:9px;padding:9px 10px;font-size:14px;color:var(--text);min-width:0}.calc-field input:focus,.calc-field select:focus{outline:2px solid #3448c522;border-color:var(--accent)}
 .subject-picks{display:flex;gap:7px;flex-wrap:wrap}.subject-chip{display:inline-flex!important;align-items:center;gap:7px;border:1px solid var(--line);border-radius:999px;padding:6px 9px;background:#fff;cursor:pointer;font-size:12px!important;font-weight:600!important;color:var(--text)!important}.subject-chip:has(input:checked){border-color:#98a2ff;background:#f4f5ff}.subject-chip input{width:15px!important;height:15px;margin:0;padding:0}.subject-chip small{font-size:10px;color:var(--muted);font-weight:600}
-.calc-toggle{display:flex;align-items:center;gap:10px;border:1px solid #f1d28a;border-radius:11px;padding:10px 11px;background:#fffbeb}.calc-toggle input{width:18px!important;height:18px;margin:0}.calc-toggle strong{display:block;font-size:13px}.calc-toggle small{display:block;color:#765a18;font-size:11px;margin-top:2px}
+.calc-toggle{display:flex;align-items:center;gap:10px;border:1px solid #f1d28a;border-radius:11px;padding:10px 11px;background:#fffbeb;min-width:0}.calc-toggle input{width:18px!important;height:18px;margin:0;flex:0 0 auto}.calc-toggle strong{display:block;font-size:13px}.calc-toggle small{display:block;color:#765a18;font-size:11px;margin-top:2px}.addon-config{display:grid;grid-template-columns:minmax(0,1fr) 220px;gap:9px;align-items:stretch}.addon-mode{border:1px solid var(--line);border-radius:11px;padding:8px 10px;background:#f8fafc;display:flex;flex-direction:column;justify-content:center;gap:4px}.addon-mode label{font-size:10px;font-weight:800;color:#667085;text-transform:uppercase;letter-spacing:.035em}.addon-mode select{width:100%;border:1px solid #d0d5dd;background:#fff;border-radius:8px;padding:8px 9px;font-size:12px;font-weight:750;color:#344054}.addon-mode select:disabled{opacity:.5;background:#f2f4f7}
 .calc-preview-wrap{margin-top:14px;border-top:1px solid var(--line);padding-top:12px}.calc-preview-head{display:flex;align-items:flex-end;justify-content:space-between;gap:12px;margin-bottom:7px}.calc-preview-head h3{font-size:15px;margin:0 0 2px}.calc-preview-head p{font-size:11px;color:var(--muted);margin:0}.calc-preview-count{font-size:11px;font-weight:700;color:#475467;background:#f2f4f7;padding:5px 8px;border-radius:999px;white-space:nowrap}
-.mini-weekdays,.mini-calendar{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:4px}.mini-weekdays{margin-bottom:4px}.mini-weekdays span{text-align:center;font-size:9px;font-weight:800;color:#98a2b3;letter-spacing:.03em}.mini-day{min-height:68px;border:1px solid var(--line);border-radius:8px;background:#fff;padding:4px;overflow:hidden}.mini-day.out-range{background:#fafafa}.mini-date{display:flex;align-items:center;justify-content:space-between;font-size:9px;font-weight:800;color:#475467;margin-bottom:3px}.mini-day.out-range .mini-date{color:#b7bec8}.mini-events{display:grid;gap:3px}.mini-slot{display:grid;grid-template-columns:1fr;gap:3px;min-width:0}.mini-slot.multi{grid-template-columns:repeat(var(--slot-count),minmax(0,1fr))}.mini-slot.multi .mini-lesson{flex-direction:column;justify-content:center;gap:1px;padding:3px 4px;min-width:0}.mini-slot.multi .mini-lesson .lesson-name,.mini-slot.multi .mini-lesson .lesson-time{width:100%;overflow:hidden;text-overflow:ellipsis}.mini-slot.multi .mini-lesson .lesson-time{text-align:left}.mini-lesson{appearance:none;width:100%;text-align:left;border:1px solid #aeb8ff;background:#eef0ff;color:#2437a6;border-radius:6px;padding:3px 5px;font-size:8.5px;font-weight:800;line-height:1.15;cursor:pointer;display:flex;justify-content:space-between;gap:5px;min-width:0}.mini-lesson .lesson-name{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.mini-lesson .lesson-time{font-weight:650;opacity:.75;white-space:nowrap;font-size:7.5px}.mini-lesson.mpf{border-color:#82c7a5;background:#ecfdf3;color:#067647}.mini-lesson.efc{border-color:#f5c66c;background:#fff7df;color:#8a5800}.mini-lesson.off{background:#fff;border-color:#d0d5dd;color:#98a2b3;text-decoration:line-through;opacity:.68}.mini-empty{font-size:9px;color:#c0c6d0}.calc-hint{margin-top:6px;font-size:9.5px;color:var(--muted)}
+.mini-weekdays,.mini-calendar{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:4px}.mini-weekdays{margin-bottom:4px}.mini-weekdays span{text-align:center;font-size:9px;font-weight:800;color:#98a2b3;letter-spacing:.03em}.mini-day{min-height:68px;border:1px solid var(--line);border-radius:8px;background:#fff;padding:4px;overflow:hidden}.mini-day.out-range{background:#fafafa}.mini-date{display:flex;align-items:center;justify-content:space-between;font-size:9px;font-weight:800;color:#475467;margin-bottom:3px}.mini-day.out-range .mini-date{color:#b7bec8}.mini-events{display:grid;gap:3px}.mini-slot{display:grid;grid-template-columns:minmax(0,1fr);gap:3px;min-width:0}.mini-slot.multi{grid-template-columns:repeat(var(--slot-count),minmax(0,1fr));gap:3px;padding:2px;border:1px dashed #cbd5e1;border-radius:7px;background:#f8fafc}.mini-slot.multi .mini-lesson{flex-direction:column;justify-content:center;gap:1px;padding:3px 4px;min-width:0;width:100%}.mini-slot.multi .mini-lesson .lesson-name,.mini-slot.multi .mini-lesson .lesson-time{width:100%;overflow:hidden;text-overflow:ellipsis}.mini-slot.multi .mini-lesson .lesson-time{text-align:left}.mini-lesson{appearance:none;width:100%;text-align:left;border:1px solid #aeb8ff;background:#eef0ff;color:#2437a6;border-radius:6px;padding:3px 5px;font-size:8.5px;font-weight:800;line-height:1.15;cursor:pointer;display:flex;justify-content:space-between;gap:5px;min-width:0}.mini-lesson .lesson-name{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.mini-lesson .lesson-time{font-weight:650;opacity:.75;white-space:nowrap;font-size:7.5px}.mini-lesson.mpf{border-color:#82c7a5;background:#ecfdf3;color:#067647}.mini-lesson.efc{border-color:#f5c66c;background:#fff7df;color:#8a5800}.mini-lesson.off{background:#fff;border-color:#d0d5dd;color:#98a2b3;text-decoration:line-through;opacity:.68}.mini-empty{font-size:9px;color:#c0c6d0}.calc-hint{margin-top:6px;font-size:9.5px;color:var(--muted)}
 .calc-summary{margin-top:14px;display:grid;grid-template-columns:repeat(3,1fr);gap:8px}.calc-result{background:#fff;border:1px solid var(--line);border-radius:11px;padding:10px}.calc-result b{display:block;font-size:19px;margin-top:3px}.calc-result span{font-size:9.5px;color:var(--muted);text-transform:uppercase;letter-spacing:.04em;font-weight:750}.calc-pricing{margin-top:9px;display:grid;grid-template-columns:1fr 1fr;gap:9px}.price-case{border:1px solid var(--line);border-radius:13px;padding:12px;background:#fff}.price-case.early{border-color:#f3c15f;background:#fffdf6}.price-case h4{margin:0 0 4px;font-size:13px}.price-case .deadline{font-size:10px;color:var(--muted);margin-bottom:8px}.price-case .big-price{font-size:25px;font-weight:850;color:#2437a6;letter-spacing:-.02em}.price-case .breakdown{font-size:10.5px;color:#667085;line-height:1.45;margin-top:7px}.price-case .promo{display:inline-flex;margin-top:8px;padding:4px 7px;border-radius:999px;background:#ecfdf3;color:#027a48;font-size:9.5px;font-weight:800}.price-case.early .promo{background:#fff3cf;color:#8a5800}.calc-statusline{margin-top:9px;padding:9px 11px;border-radius:11px;background:#f8fafc;border:1px solid var(--line);font-size:10.5px;color:#667085;line-height:1.45}.calc-error{color:#b42318;font-size:12px;margin-top:9px;display:none}.calc-error.show{display:block}
 
 .customer-toggle{display:flex;align-items:center;gap:7px;margin-left:auto;margin-right:4px;border:1px solid #d0d5dd;background:#fff;border-radius:999px;padding:8px 12px;font-size:11px;font-weight:750;color:#475467;cursor:pointer;white-space:nowrap;min-height:40px}.customer-toggle input{width:17px;height:17px;margin:0}.mobile-customer-row{display:none}.auto-discount-card{border:1px solid #d8defd;background:#f7f8ff;border-radius:11px;padding:10px 12px}.auto-discount-card strong{font-size:20px;color:#293a9b}.auto-discount-card span{display:block;margin-top:2px;font-size:10.5px;color:#667085;line-height:1.35}
@@ -59,7 +59,7 @@ header h1{font-size:20px;margin:0 0 4px} header p{margin:0;color:#cfd4dc;font-si
 .customer-actions{display:none;margin:9px 20px 0;gap:7px;flex-wrap:wrap}.customer-action-btn{border:1px solid #98a2b3;background:#fff;color:#344054;border-radius:9px;padding:7px 10px;font-size:10.5px;font-weight:800;cursor:pointer}.customer-action-btn.primary{background:#3448c5;color:#fff;border-color:#3448c5}.customer-message{display:none;margin:11px 0 0;border:1px solid var(--line);border-radius:13px;background:#f8fafc;padding:12px}.customer-message-head{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:8px}.customer-message h3{font-size:13px;margin:0}.customer-message pre{white-space:pre-wrap;margin:0;font-family:inherit;font-size:11px;line-height:1.55;color:#344054;background:#fff;border:1px solid #e4e7ec;border-radius:10px;padding:11px;max-height:280px;overflow:auto}.calc-modal.customer-view .customer-actions{display:flex}.calc-modal.customer-view .customer-message{display:block}.calc-modal.customer-view .calc-head h2{font-size:18px}.calc-modal.customer-view .calc-preview-head h3{font-size:14px}.calc-modal.customer-view .calc-preview-head p{font-size:10px}.calc-modal.customer-view .calc-preview-count{font-size:10px}.calc-modal.customer-view .mini-weekdays span{font-size:8px}.calc-modal.customer-view .calc-result span{font-size:9px}.calc-modal.customer-view .calc-result b{font-size:18px}
 
 @media(max-width:760px){.calc-pricing{grid-template-columns:1fr}.calc-summary{grid-template-columns:1fr 1fr 1fr}.mini-day{min-height:60px;padding:3px}.mini-lesson{font-size:7.5px;padding:3px}.mini-lesson .lesson-time{font-size:6.8px}.calc-modal{border-radius:14px}.calc-body,.calc-head{padding-left:12px;padding-right:12px}}
-@media(max-width:620px){.calc-grid{grid-template-columns:1fr}.calc-field.full{grid-column:auto}.calc-summary{grid-template-columns:1fr 1fr}.calc-summary .calc-result:last-child{grid-column:1/-1}.export-controls{margin-left:0;width:100%;flex-wrap:wrap}.export-controls select{flex:1}.calc-btn{flex:1}}
+@media(max-width:620px){.addon-config{grid-template-columns:1fr}.calc-grid{grid-template-columns:1fr}.calc-field.full{grid-column:auto}.calc-summary{grid-template-columns:1fr 1fr}.calc-summary .calc-result:last-child{grid-column:1/-1}.export-controls{margin-left:0;width:100%;flex-wrap:wrap}.export-controls select{flex:1}.calc-btn{flex:1}}
 
 
 @media(max-width:620px){
@@ -134,16 +134,34 @@ header h1{font-size:20px;margin:0 0 4px} header p{margin:0;color:#cfd4dc;font-si
           <input id="calcEnd" type="date" min="2026-10-01" max="2026-10-31" value="2026-10-31">
         </div>
         <div class="calc-field full">
-          <label class="calc-toggle" for="calcMpf">
-            <input id="calcMpf" type="checkbox">
-            <span><strong>Add MPF — Math for Prathom (Foundation)</strong><small id="calcMpfHelp">Shows all MPF periods in the selected date range. If an MPF period overlaps the pathway, both appear side-by-side so you can choose which one to keep. MPF uses the pathway's automatic hourly rate.</small></span>
-          </label>
+          <div class="addon-config">
+            <label class="calc-toggle" for="calcMpf">
+              <input id="calcMpf" type="checkbox">
+              <span><strong>Add MPF</strong><small id="calcMpfHelp">Math for Prathom (Foundation). MPF uses the pathway's automatic hourly rate.</small></span>
+            </label>
+            <div class="addon-mode">
+              <label for="calcMpfMode">MPF display</label>
+              <select id="calcMpfMode" disabled>
+                <option value="clash" selected>Show clashes · multi-column</option>
+                <option value="nonclash">Non-clashing only</option>
+              </select>
+            </div>
+          </div>
         </div>
         <div class="calc-field full">
-          <label class="calc-toggle" for="calcEfc">
-            <input id="calcEfc" type="checkbox">
-            <span><strong>Add EFC</strong><small id="calcEfcHelp">Shows all EFC periods in the selected date range. If EFC overlaps the pathway or MPF, the lessons appear side-by-side and can be deselected individually. EFC is ฿120/hour.</small></span>
-          </label>
+          <div class="addon-config">
+            <label class="calc-toggle" for="calcEfc">
+              <input id="calcEfc" type="checkbox">
+              <span><strong>Add EFC</strong><small id="calcEfcHelp">EFC is fixed at ฿120/hour.</small></span>
+            </label>
+            <div class="addon-mode">
+              <label for="calcEfcMode">EFC display</label>
+              <select id="calcEfcMode" disabled>
+                <option value="clash" selected>Show clashes · multi-column</option>
+                <option value="nonclash">Non-clashing only</option>
+              </select>
+            </div>
+          </div>
         </div>
         <div class="calc-field full">
           <label for="calcRate">Automatic rate per hour (THB)</label>
@@ -173,7 +191,7 @@ header h1{font-size:20px;margin:0 0 4px} header p{margin:0;color:#cfd4dc;font-si
         </div>
         <div class="mini-weekdays" id="calcWeekdays"><span>MON</span><span>TUE</span><span>WED</span><span>THU</span><span>FRI</span><span>SAT</span><span>SUN</span></div>
         <div class="mini-calendar" id="calcCalendar"></div>
-        <div class="calc-hint">Tap any lesson to include or exclude it. Overlapping MPF/EFC add-ons are shown side-by-side with the pathway lesson so you can choose manually.</div>
+        <div class="calc-hint">Tap any lesson to include or exclude it. Each add-on can show pathway clashes as multi-column rows, or hide clashing slots with “Non-clashing only”.</div>
       </div>
       <div aria-live="polite">
         <div class="calc-summary">
@@ -501,7 +519,7 @@ function calculatorCourseLabel(course){
   MM2:'M2 Math',SM2:'M2 Science',EMF:'English (F)',EMA:'English (A)',
   MM4e:'M4e Math',PM4e:'M4e Physics',CM4e:'M4e Chemistry',BM4e:'M4e Biology',
   MM4:'M4 Math',PM4:'M4 Physics',CM4:'M4 Chemistry',BM4:'M4 Biology',
-  MPF:'Math Foundation (MPF)',EFC:'EFC'
+  MPF:'MPF',EFC:'EFC'
  };
  return labels[course]||course;
 }
@@ -517,21 +535,35 @@ function calcValidRange(){
  if(start&&end&&start>end){calcError.textContent='Finish date must be on or after the start date.';calcError.classList.add('show');return false}
  return true;
 }
+function updateAddonModeControls(){
+ const pairs=[[calcMpf,calcMpfMode,'calcMpfHelp','MPF'],[calcEfc,calcEfcMode,'calcEfcHelp','EFC']];
+ pairs.forEach(([toggle,mode,helpId,name])=>{
+   mode.disabled=!toggle.checked;
+   const help=document.getElementById(helpId);
+   if(!help)return;
+   const modeText=mode.value==='clash'?'Clashing pathway slots stay visible and render side-by-side.':'Pathway-clashing slots are hidden.';
+   help.textContent=name==='MPF'?`Math for Prathom (Foundation). ${modeText} MPF uses the pathway's automatic hourly rate.`:`${modeText} EFC is fixed at ฿120/hour.`;
+ });
+}
 function rebuildCalcPreview(resetSelection=true){
+ updateAddonModeControls();
  if(!calcValidRange()){calcPreviewEvents=[];calcSelectedKeys.clear();renderCalcCalendar();calculateCoursePrice();return}
  const start=calcStart.value,end=calcEnd.value;
  const selectedCourses=calcSelectedCourses();
  const core=data.filter(e=>selectedCourses.includes(e.course)&&(!start||e.date>=start)&&(!end||e.date<=end));
  let preview=[...core];
- // Show every selected add-on period in range, even when it overlaps a core lesson
- // or another add-on. Conflicts are displayed side-by-side and remain individually
- // selectable so staff/parents can manually choose the preferred period.
- if(calcMpf.checked){
-   preview.push(...data.filter(e=>e.course==='MPF'&&(!start||e.date>=start)&&(!end||e.date<=end)));
- }
- if(calcEfc.checked){
-   preview.push(...data.filter(e=>e.course==='EFC'&&(!start||e.date>=start)&&(!end||e.date<=end)));
- }
+ const coreOccupied=new Set(core.map(e=>`${e.date}|${e.period}`));
+ const addonInRange=(course)=>data.filter(e=>e.course===course&&(!start||e.date>=start)&&(!end||e.date<=end));
+ const addAddon=(course,mode)=>{
+   let items=addonInRange(course);
+   // “Non-clashing only” is intentionally measured against the selected pathway.
+   // “Show clashes” keeps those slots and the calendar renders the same period
+   // as equal-width columns so staff can manually deselect either lesson.
+   if(mode==='nonclash') items=items.filter(e=>!coreOccupied.has(`${e.date}|${e.period}`));
+   preview.push(...items);
+ };
+ if(calcMpf.checked) addAddon('MPF',calcMpfMode.value);
+ if(calcEfc.checked) addAddon('EFC',calcEfcMode.value);
  preview.sort((a,b)=>a.date.localeCompare(b.date)||a.period-b.period||a.course.localeCompare(b.course));
  calcPreviewEvents=preview;
  if(resetSelection) calcSelectedKeys=new Set(preview.map(calcEventKey));
@@ -624,7 +656,7 @@ function deadlineThaiLong(){const p=deadlineParts(),months=['','มกราค�
 function deadlineEnglish(){const p=deadlineParts(),months=['','January','February','March','April','May','June','July','August','September','October','November','December'];return `${p.d} ${months[p.m]} ${p.y}`;}
 function refreshDeadlineStaticText(){
  const en=deadlineEnglish(),th=deadlineThaiLong();
- const efcHelp=document.getElementById('calcEfcHelp'); if(efcHelp)efcHelp.textContent=`All EFC periods are shown, including overlaps. Conflicts appear side-by-side and can be deselected. EFC is ฿120/hour. Early-payment privilege applies before ${en}.`;
+ const efcHelp=document.getElementById('calcEfcHelp'); if(efcHelp)efcHelp.textContent=`EFC is fixed at ฿120/hour. Display mode controls whether pathway clashes are shown. Early-payment privilege applies before ${en}.`;
  const ebHelp=document.getElementById('calcEarlyBirdHelp'); if(ebHelp)ebHelp.textContent=`Automatic Early Bird discount applies to payments before ${en} and updates from the share of core periods selected.`;
  const dlHelp=document.getElementById('calcDeadlineHelp'); if(dlHelp)dlHelp.textContent=`Customers paying before this date receive the Early Bird promotion. Current deadline: ${en}.`;
  if(calcCustomer?.checked){document.getElementById('calcEarlyTitle').textContent=`ชำระก่อน ${th}`;document.getElementById('calcLateTitle').textContent=`ชำระตั้งแต่ ${th}`;}else{document.getElementById('calcEarlyTitle').textContent=`Pay before ${en}`;document.getElementById('calcLateTitle').textContent=`Pay from ${en}`;}
@@ -745,6 +777,8 @@ function initCalculator(){
  [calcStart,calcEnd].forEach(el=>el.addEventListener('input',()=>rebuildCalcPreview(true)));
  calcMpf.addEventListener('change',()=>rebuildCalcPreview(true));
  calcEfc.addEventListener('change',()=>rebuildCalcPreview(true));
+ calcMpfMode.addEventListener('change',()=>rebuildCalcPreview(true));
+ calcEfcMode.addEventListener('change',()=>rebuildCalcPreview(true));
  document.getElementById('calcEarlyBirdDeadline').addEventListener('input',calculateCoursePrice);
  const calcCustomerMobile=document.getElementById('calcCustomerMobile');
  const setCustomerMode=(on)=>{calcCustomer.checked=on;if(calcCustomerMobile)calcCustomerMobile.checked=on;calcModal.classList.toggle('customer-view',on);updateCustomerLanguage(on);calculateCoursePrice();};

@@ -1,9 +1,12 @@
-October 2026 calendar website update — V8 fixed timetable with MPF add-on.
+Infinia Academy October 2026 — V8 fixed timetable + MPF/EFC display modes
 
-Changes in this build:
-- M5 remains cancelled; MM5 + PM5 remain repurposed as MPF (22 periods).
-- MPF and EFC add-ons now show ALL periods in the selected date range, including periods that overlap the selected pathway or each other.
-- Overlapping events render side-by-side in the same time row (multi-column) in the course calculator preview and customer PNG export.
-- Every event remains individually selectable/unselectable in the calculator.
-- EFC remains fixed at 120 THB/hour; MPF uses the pathway automatic hourly rate.
-- Existing Early Bird, deadline, customer-mode, and pricing logic are preserved.
+Website/UI update only; the fixed V8 timetable data is preserved.
+
+Changes:
+- MPF chips display simply as “MPF”.
+- MPF and EFC each have an independent display mode:
+  1) Show clashes · multi-column (default): pathway-clashing add-on periods remain visible side-by-side in the same time row.
+  2) Non-clashing only: add-on periods that overlap the selected pathway are hidden.
+- All visible periods remain individually selectable/deselectable and pricing updates live.
+- Customer PNG export follows the same multi-column grouping for visible clashes.
+- Existing automatic rates, Early Bird logic, EFC pricing/privileges, Thai customer mode, and MPF pricing are preserved.
