@@ -45,7 +45,7 @@ header h1{font-size:20px;margin:0 0 4px} header p{margin:0;color:#cfd4dc;font-si
 .calc-modal{width:min(1160px,100%);max-height:96vh;overflow:auto;background:#fff;border-radius:18px;box-shadow:0 28px 70px #10182855;border:1px solid #ffffff55}
 .calc-head{display:flex;align-items:flex-start;justify-content:space-between;gap:14px;padding:17px 20px 12px;border-bottom:1px solid var(--line)}
 .calc-head h2{font-size:20px;margin:0 0 3px}.calc-head p{font-size:12px;color:var(--muted);margin:0}.calc-close{border:0;background:#f2f4f7;color:#475467;width:34px;height:34px;border-radius:10px;font-size:22px;line-height:1;cursor:pointer}
-.calc-body{padding:15px 20px 19px}.calc-grid{display:grid;grid-template-columns:1fr 1fr;gap:11px}.calc-field{display:flex;flex-direction:column;gap:5px}.calc-field.full{grid-column:1/-1}.calc-field label{font-size:12px;font-weight:750;color:#475467}.calc-field select,.calc-field input{width:100%;border:1px solid var(--line);background:#fff;border-radius:9px;padding:9px 10px;font-size:14px;color:var(--text);min-width:0}.calc-field input:focus,.calc-field select:focus{outline:2px solid #3448c522;border-color:var(--accent)}
+.calc-body{padding:15px 20px 19px}.calc-grid{display:grid;grid-template-columns:1fr 1fr;gap:11px}.calc-field{display:flex;flex-direction:column;gap:5px}.secondary-pathway{border:1px solid var(--line);border-radius:12px;padding:12px;background:#f8fafc}.secondary-pathway-head{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:10px}.secondary-pathway-head strong{font-size:13px}.secondary-pathway[hidden]{display:none!important}.calc-field.full{grid-column:1/-1}.calc-field label{font-size:12px;font-weight:750;color:#475467}.calc-field select,.calc-field input{width:100%;border:1px solid var(--line);background:#fff;border-radius:9px;padding:9px 10px;font-size:14px;color:var(--text);min-width:0}.calc-field input:focus,.calc-field select:focus{outline:2px solid #3448c522;border-color:var(--accent)}
 .subject-picks{display:flex;gap:7px;flex-wrap:wrap}.subject-chip{display:inline-flex!important;align-items:center;gap:7px;border:1px solid var(--line);border-radius:999px;padding:6px 9px;background:#fff;cursor:pointer;font-size:12px!important;font-weight:600!important;color:var(--text)!important}.subject-chip:has(input:checked){border-color:#98a2ff;background:#f4f5ff}.subject-chip input{width:15px!important;height:15px;margin:0;padding:0}.subject-chip small{font-size:10px;color:var(--muted);font-weight:600}
 .calc-toggle{display:flex;align-items:center;gap:10px;border:1px solid #f1d28a;border-radius:11px;padding:10px 11px;background:#fffbeb;min-width:0}.calc-toggle input{width:18px!important;height:18px;margin:0;flex:0 0 auto}.calc-toggle strong{display:block;font-size:13px}.calc-toggle small{display:block;color:#765a18;font-size:11px;margin-top:2px}.addon-config{display:grid;grid-template-columns:minmax(0,1fr) 220px;gap:9px;align-items:stretch}.addon-mode{border:1px solid var(--line);border-radius:11px;padding:8px 10px;background:#f8fafc;display:flex;flex-direction:column;justify-content:center;gap:4px}.addon-mode label{font-size:10px;font-weight:800;color:#667085;text-transform:uppercase;letter-spacing:.035em}.addon-mode select{width:100%;border:1px solid #d0d5dd;background:#fff;border-radius:8px;padding:8px 9px;font-size:12px;font-weight:750;color:#344054}.addon-mode select:disabled{opacity:.5;background:#f2f4f7}
 .calc-preview-wrap{margin-top:14px;border-top:1px solid var(--line);padding-top:12px}.calc-preview-head{display:flex;align-items:flex-end;justify-content:space-between;gap:12px;margin-bottom:7px}.calc-preview-head h3{font-size:15px;margin:0 0 2px}.calc-preview-head p{font-size:11px;color:var(--muted);margin:0}.calc-preview-count{font-size:11px;font-weight:700;color:#475467;background:#f2f4f7;padding:5px 8px;border-radius:999px;white-space:nowrap}
@@ -125,6 +125,17 @@ header h1{font-size:20px;margin:0 0 4px} header p{margin:0;color:#cfd4dc;font-si
           <label>Subjects</label>
           <div class="subject-picks" id="calcSubjects"></div>
         </div>
+        <div class="calc-field full">
+          <button id="calcAddPathway" type="button" class="customer-action-btn" style="align-self:flex-start">+ Add clashing student pathway</button>
+          <div id="calcSecondPathwayWrap" class="secondary-pathway" hidden>
+            <div class="secondary-pathway-head"><strong>Clashing student pathway</strong><button id="calcRemovePathway" type="button" class="customer-action-btn">Remove</button></div>
+            <label for="calcSecondPathway">Student pathway</label>
+            <select id="calcSecondPathway"></select>
+            <label style="margin-top:10px">Subjects</label>
+            <div class="subject-picks" id="calcSecondSubjects"></div>
+            <small style="display:block;margin-top:7px;color:#667085;line-height:1.35">Selected lessons are merged into the same calendar. Any lessons at the same date and period render side-by-side in multi-column view.</small>
+          </div>
+        </div>
         <div class="calc-field">
           <label for="calcStart">Start date</label>
           <input id="calcStart" type="date" min="2026-10-01" max="2026-10-31" value="2026-10-01">
@@ -177,8 +188,8 @@ header h1{font-size:20px;margin:0 0 4px} header p{margin:0;color:#cfd4dc;font-si
         </div>
         <div class="calc-field full">
           <label for="calcEarlyBirdDeadline">Early Bird deadline</label>
-          <input id="calcEarlyBirdDeadline" type="date" value="2026-09-29">
-          <small id="calcDeadlineHelp" style="display:block;margin-top:6px;color:#667085;line-height:1.35">Customers paying before this date receive the Early Bird promotion. Default: 29 September 2026.</small>
+          <input id="calcEarlyBirdDeadline" type="date">
+          <small id="calcDeadlineHelp" style="display:block;margin-top:6px;color:#667085;line-height:1.35">Customers paying before this date receive the Early Bird promotion. Default: tomorrow.</small>
         </div>
       </div>
       <div class="mobile-customer-row" id="mobileCustomerRow">
@@ -512,6 +523,9 @@ function formatTHB(v){
  return new Intl.NumberFormat('en-US',{style:'currency',currency:'THB',minimumFractionDigits:Number.isInteger(v)?0:2,maximumFractionDigits:2}).format(v).replace('THB','฿').replace(/\s/g,'');
 }
 function calcSelectedCourses(){return [...document.querySelectorAll('#calcSubjects input:checked')].map(x=>x.value)}
+function calcSecondSelectedCourses(){return [...document.querySelectorAll('#calcSecondSubjects input:checked')].map(x=>x.value)}
+function secondPathwayActive(){return !document.getElementById('calcSecondPathwayWrap').hidden}
+function combinedCoreCourses(){return [...new Set([...calcSelectedCourses(),...(secondPathwayActive()?calcSecondSelectedCourses():[])])]}
 function calculatorCourseLabel(course){
  const labels={
   MP4:'P4 Math',SP4:'P4 Science',EP4:'English',
@@ -528,6 +542,13 @@ function renderCalcSubjects(){
  const map=calculatorCourseMap(calcPathway.value);
  calcSubjects.innerHTML=Object.entries(map).map(([subject,course])=>`<label class="subject-chip"><input type="checkbox" value="${course}" checked><span>${calculatorCourseLabel(course)}</span></label>`).join('');
  calcSubjects.querySelectorAll('input').forEach(x=>x.addEventListener('change',()=>rebuildCalcPreview(true)));
+ rebuildCalcPreview(true);
+}
+function renderSecondCalcSubjects(){
+ const box=document.getElementById('calcSecondSubjects'),sel=document.getElementById('calcSecondPathway');
+ const map=calculatorCourseMap(sel.value);
+ box.innerHTML=Object.entries(map).map(([subject,course])=>`<label class="subject-chip"><input type="checkbox" value="${course}" checked><span>${calculatorCourseLabel(course)}</span></label>`).join('');
+ box.querySelectorAll('input').forEach(x=>x.addEventListener('change',()=>rebuildCalcPreview(true)));
  rebuildCalcPreview(true);
 }
 function calcValidRange(){
@@ -550,7 +571,7 @@ function rebuildCalcPreview(resetSelection=true){
  updateAddonModeControls();
  if(!calcValidRange()){calcPreviewEvents=[];calcSelectedKeys.clear();renderCalcCalendar();calculateCoursePrice();return}
  const start=calcStart.value,end=calcEnd.value;
- const selectedCourses=calcSelectedCourses();
+ const selectedCourses=combinedCoreCourses();
  const core=data.filter(e=>selectedCourses.includes(e.course)&&(!start||e.date>=start)&&(!end||e.date<=end));
  let preview=[...core];
  const coreOccupied=new Set(core.map(e=>`${e.date}|${e.period}`));
@@ -601,9 +622,9 @@ function renderCalcCalendar(){
  }));
 }
 function fullCorePackageSelected(){
- const pathway=calcPathway.value;
- const allCourses=Object.values(calculatorCourseMap(pathway));
- const chosen=calcSelectedCourses();
+ const pathways=[calcPathway.value,...(secondPathwayActive()?[document.getElementById('calcSecondPathway').value]:[])];
+ const allCourses=[...new Set(pathways.flatMap(p=>Object.values(calculatorCourseMap(p))))];
+ const chosen=combinedCoreCourses();
  if(!allCourses.length||chosen.length!==allCourses.length||!allCourses.every(c=>chosen.includes(c)))return false;
  const official=data.filter(e=>allCourses.includes(e.course));
  return official.length>0&&official.every(e=>calcSelectedKeys.has(calcEventKey(e)));
@@ -617,7 +638,8 @@ function allAvailableEfcSelected(){
  return calcEfc.checked&&efc.length>0&&efc.every(e=>calcSelectedKeys.has(calcEventKey(e)));
 }
 function fullPathwayCorePeriodCount(){
- const courses=Object.values(calculatorCourseMap(calcPathway.value));
+ const pathways=[calcPathway.value,...(secondPathwayActive()?[document.getElementById('calcSecondPathway').value]:[])];
+ const courses=[...new Set(pathways.flatMap(p=>Object.values(calculatorCourseMap(p))))];
  return data.filter(e=>courses.includes(e.course)).length;
 }
 function automaticEarlyBirdDiscount(selectedCorePeriods){
@@ -650,7 +672,7 @@ function thaiConceptLine(course,pathway){
  if(['EPA','EMA'].includes(course))return '- อังกฤษ เรียนตามหมวดสำคัญและพาทำแนวข้อสอบระดับ Advanced เพื่อยกระดับทักษะและเตรียมพร้อมสู่สนามแข่งขัน'; return '';
 }
 function thaiDateRange(selectedEvents){if(!selectedEvents.length)return '1-31 ตุลาคม 2026';const dates=selectedEvents.map(e=>e.date).sort();return `${Number(dates[0].slice(8,10))}-${Number(dates[dates.length-1].slice(8,10))} ตุลาคม 2026`;}
-function earlyBirdDeadlineValue(){return document.getElementById('calcEarlyBirdDeadline')?.value||'2026-09-29';}
+function earlyBirdDeadlineValue(){const v=document.getElementById('calcEarlyBirdDeadline')?.value;if(v)return v;const d=new Date();d.setDate(d.getDate()+1);return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`;}
 function deadlineParts(){const v=earlyBirdDeadlineValue(),m=v.match(/^(\d{4})-(\d{2})-(\d{2})$/);return m?{y:Number(m[1]),m:Number(m[2]),d:Number(m[3])}:{y:2026,m:9,d:29};}
 function deadlineThaiShort(){const p=deadlineParts(),months=['','ม.ค.','ก.พ.','มี.ค.','เม.ย.','พ.ค.','มิ.ย.','ก.ค.','ส.ค.','ก.ย.','ต.ค.','พ.ย.','ธ.ค.'];return `${p.d} ${months[p.m]} ${p.y}`;}
 function deadlineThaiLong(){const p=deadlineParts(),months=['','มกราคม','กุมภาพันธ์','มีนาคม','เมษายน','พฤษภาคม','มิถุนายน','กรกฎาคม','สิงหาคม','กันยายน','ตุลาคม','พฤศจิกายน','ธันวาคม'];return `${p.d} ${months[p.m]} ${p.y}`;}
@@ -677,7 +699,7 @@ function updateCustomerLanguage(on){
 }
 function drawRounded(ctx,x,y,w,h,r,fill,stroke){ctx.beginPath();if(ctx.roundRect)ctx.roundRect(x,y,w,h,r);else ctx.rect(x,y,w,h);if(fill){ctx.fillStyle=fill;ctx.fill()}if(stroke){ctx.strokeStyle=stroke;ctx.lineWidth=2;ctx.stroke()}}
 function renderCustomerQuoteCanvas(){
- const W=1800,H=1760,SCALE=2,canvas=document.createElement('canvas');canvas.width=W*SCALE;canvas.height=H*SCALE;const ctx=canvas.getContext('2d');ctx.scale(SCALE,SCALE);ctx.fillStyle='#f6f7fb';ctx.fillRect(0,0,W,H);ctx.fillStyle='#101828';ctx.fillRect(0,0,W,120);ctx.fillStyle='#fff';ctx.font='700 34px sans-serif';ctx.fillText('Infinia Academy · ตารางคอร์สเดือนตุลาคม 2026',55,54);ctx.font='500 21px sans-serif';ctx.fillStyle='#d0d5dd';ctx.fillText(thaiPathwayLabel(calcPathway.value),55,88);
+ const W=1800,H=1760,SCALE=2,canvas=document.createElement('canvas');canvas.width=W*SCALE;canvas.height=H*SCALE;const ctx=canvas.getContext('2d');ctx.scale(SCALE,SCALE);ctx.fillStyle='#f6f7fb';ctx.fillRect(0,0,W,H);ctx.fillStyle='#101828';ctx.fillRect(0,0,W,120);ctx.fillStyle='#fff';ctx.font='700 34px sans-serif';ctx.fillText('Infinia Academy · ตารางคอร์สเดือนตุลาคม 2026',55,54);ctx.font='500 21px sans-serif';ctx.fillStyle='#d0d5dd';ctx.fillText(secondPathwayActive()?`${thaiPathwayLabel(calcPathway.value)} + ${thaiPathwayLabel(document.getElementById('calcSecondPathway').value)}`:thaiPathwayLabel(calcPathway.value),55,88);
  const selected=calcPreviewEvents.filter(e=>calcSelectedKeys.has(calcEventKey(e))),earlyPrice=document.getElementById('calcEarlyPrice').textContent,headline=calcCustomerHeadline.textContent,sub=calcCustomerSubline.textContent;drawRounded(ctx,55,145,1690,92,18,'#fff9e8','#f3c15f');ctx.fillStyle='#8a5800';ctx.font='800 30px sans-serif';ctx.fillText(headline,80,183);ctx.font='500 18px sans-serif';ctx.fillText(sub,80,215);ctx.fillStyle='#475467';ctx.font='650 18px sans-serif';ctx.fillText(calcCustomerMeta.textContent,60,270);
  const x0=55,y0=325,gap=10,col=(1690-gap*6)/7,rowH=226,weekdays=['จ.','อ.','พ.','พฤ.','ศ.','ส.','อา.'];ctx.font='800 18px sans-serif';ctx.fillStyle='#667085';weekdays.forEach((d,i)=>ctx.fillText(d,x0+i*(col+gap)+8,y0-18));const first=new Date(2026,9,1),offset=(first.getDay()+6)%7,cells=[];for(let i=0;i<offset;i++)cells.push(null);for(let d=1;d<=31;d++)cells.push(d);while(cells.length<35)cells.push(null);
  cells.forEach((d,idx)=>{const r=Math.floor(idx/7),c=idx%7,x=x0+c*(col+gap),y=y0+r*(rowH+gap);drawRounded(ctx,x,y,col,rowH,12,'#fff','#dfe3ea');if(!d)return;ctx.fillStyle='#344054';ctx.font='800 19px sans-serif';ctx.fillText(String(d),x+10,y+27);const ds=`2026-10-${String(d).padStart(2,'0')}`,ev=selected.filter(e=>e.date===ds);const grouped=new Map();ev.forEach(e=>{if(!grouped.has(e.period))grouped.set(e.period,[]);grouped.get(e.period).push(e)});let ey=y+39;[...grouped.entries()].sort((a,b)=>a[0]-b[0]).slice(0,5).forEach(([period,items])=>{items.sort((a,b)=>{const rank=c=>c==='MPF'?1:(c==='EFC'?2:0);return rank(a.course)-rank(b.course)||a.course.localeCompare(b.course)});const innerX=x+8,innerW=col-16,sg=3,sw=(innerW-sg*(items.length-1))/items.length;items.forEach((e,j)=>{const bx=innerX+j*(sw+sg),efc=e.course==='EFC',mpf=e.course==='MPF';drawRounded(ctx,bx,ey,sw,48,7,efc?'#fff7df':(mpf?'#ecfdf3':'#eef0ff'),efc?'#f5c66c':(mpf?'#82c7a5':'#aeb8ff'));ctx.fillStyle=efc?'#8a5800':(mpf?'#067647':'#2437a6');const label=calculatorCourseLabel(e.course),timeText=periods[e.period]||'';const slotText=`${label} | ${timeText}`;let fs=18;ctx.font=`800 ${fs}px sans-serif`;while(fs>12&&ctx.measureText(slotText).width>sw-16){fs--;ctx.font=`800 ${fs}px sans-serif`;}ctx.save();ctx.beginPath();ctx.rect(bx+7,ey+5,Math.max(1,sw-14),38);ctx.clip();ctx.textBaseline='middle';ctx.fillText(slotText,bx+8,ey+24);ctx.restore();ctx.textBaseline='alphabetic';});ey+=51;});});
@@ -764,12 +786,13 @@ function calculateCoursePrice(){
    calcCustomerHeadline.textContent=`Early Bird ลด ${earlyPct}%`;
    calcCustomerSubline.textContent=`ชำระก่อน ${deadlineThaiShort()} รับส่วนลดพิเศษ ${earlyPct}% จากราคาคอร์ส${calcEfc.checked&&efcSelected.length&&!efcPrivilegeEligible?' · สิทธิพิเศษ EFC ใช้เมื่อมูลค่าคอร์สหลักเกิน 5,500 บาท':''}`;
  }
- const metaSubjects=calcSelectedCourses().map(calculatorCourseLabel).join(' · ');
+ const metaSubjects=combinedCoreCourses().map(calculatorCourseLabel).join(' · ');
  const startTxt=calcStart.value?calcStart.value.slice(8,10)+' Oct':'1 Oct';
  const endTxt=calcEnd.value?calcEnd.value.slice(8,10)+' Oct':'31 Oct';
- calcCustomerMeta.textContent=`${thaiPathwayLabel(calcPathway.value)}  •  ${startTxt.replace('Oct','ต.ค.')}–${endTxt.replace('Oct','ต.ค.')}  •  ${metaSubjects||'ยังไม่ได้เลือกวิชา'}${calcMpf.checked?'  •  + MPF':''}${calcEfc.checked?'  •  + EFC':''}`;
+ const pathwayMeta=secondPathwayActive()?`${thaiPathwayLabel(calcPathway.value)} + ${thaiPathwayLabel(document.getElementById('calcSecondPathway').value)}`:thaiPathwayLabel(calcPathway.value);
+ calcCustomerMeta.textContent=`${pathwayMeta}  •  ${startTxt.replace('Oct','ต.ค.')}–${endTxt.replace('Oct','ต.ค.')}  •  ${metaSubjects||'ยังไม่ได้เลือกวิชา'}${calcMpf.checked?'  •  + MPF':''}${calcEfc.checked?'  •  + EFC':''}`;
  document.getElementById('calcParentText').textContent=buildParentMessage(selectedEvents,coreGross,efcGross,gross,earlyFinal,earlyEfcDiscount,fullCore,rate,earlyPct);
- if(!calcSelectedCourses().length)calcNote.textContent='Select at least one core subject to build a quotation.';
+ if(!combinedCoreCourses().length)calcNote.textContent='Select at least one core subject to build a quotation.';
  else if(!rate)calcNote.textContent='Select at least one core period to calculate the automatic hourly rate.';
  else calcNote.textContent=`Automatic rate: ${formatTHB(rate)}/hour. MPF uses the same pathway rate; EFC remains ฿120/hour.`;
 }
@@ -779,6 +802,12 @@ function initCalculator(){
  calcPathway.innerHTML=Object.keys(groups).map(g=>`<option value="${g}">${g}</option>`).join('');
  calcPathway.value='P4';
  calcPathway.addEventListener('change',renderCalcSubjects);
+ const secondSel=document.getElementById('calcSecondPathway'),secondWrap=document.getElementById('calcSecondPathwayWrap');
+ secondSel.innerHTML=Object.keys(groups).map(g=>`<option value="${g}">${g}</option>`).join('');
+ secondSel.value='P6 - EPA';
+ secondSel.addEventListener('change',renderSecondCalcSubjects);
+ document.getElementById('calcAddPathway').addEventListener('click',()=>{secondWrap.hidden=false;document.getElementById('calcAddPathway').hidden=true;renderSecondCalcSubjects();});
+ document.getElementById('calcRemovePathway').addEventListener('click',()=>{secondWrap.hidden=true;document.getElementById('calcAddPathway').hidden=false;rebuildCalcPreview(true);});
  [calcStart,calcEnd].forEach(el=>el.addEventListener('input',()=>rebuildCalcPreview(true)));
  calcMpf.addEventListener('change',()=>rebuildCalcPreview(true));
  calcEfc.addEventListener('change',()=>rebuildCalcPreview(true));
@@ -786,6 +815,7 @@ function initCalculator(){
  calcEfcMode.addEventListener('change',()=>rebuildCalcPreview(true));
  document.getElementById('calcEarlyBirdDeadline').addEventListener('input',calculateCoursePrice);
  const now=new Date(),todayLocal=`${now.getFullYear()}-${String(now.getMonth()+1).padStart(2,'0')}-${String(now.getDate()).padStart(2,'0')}`;
+ const tomorrow=new Date(now);tomorrow.setDate(tomorrow.getDate()+1);document.getElementById('calcEarlyBirdDeadline').value=`${tomorrow.getFullYear()}-${String(tomorrow.getMonth()+1).padStart(2,'0')}-${String(tomorrow.getDate()).padStart(2,'0')}`;
  calcStart.value=todayLocal<'2026-10-01'?'2026-10-01':(todayLocal>'2026-10-31'?'2026-10-31':todayLocal);
  const pctInput=document.getElementById('calcEarlyBirdPct');
  pctInput.addEventListener('input',()=>{pctInput.dataset.manual='1';calculateCoursePrice();});
